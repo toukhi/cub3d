@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:23:00 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/29 13:01:07 by abiru            ###   ########.fr       */
+/*   Updated: 2023/05/29 19:02:34 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char **ft_ssplit(char const *s, char const *items)
 // 						"      	basic string		with	tabs		  ", "      	basic string		with	tabs		  ",
 // 						"", " 	   sd awd",
 // 						"			   			", " 		q",
-// 						"", 0,
+// 						" ", "\t\n ",
 // 						0, "",
 // 						",123 321, , , , , , ,", "	 ,"
 // 	};
