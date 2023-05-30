@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:48:32 by abiru             #+#    #+#             */
-/*   Updated: 2022/11/13 12:16:38 by abiru            ###   ########.fr       */
+/*   Updated: 2023/05/30 20:15:07 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,40 +45,57 @@ static int	cus_strlen(const char *str)
 	return (j);
 }
 
-static int	ft_sign(const char *str, int i)
+// static int	ft_sign(const char *str, int i)
+// {
+// 	if (str[i] == '+' || str[i] == '-')
+// 	{
+// 		if (str[i] == '-')
+// 			return (-1);
+// 	}
+// 	return (1);
+// }
+
+static bool check_char(char const *str)
 {
-	if (str[i] == '+' || str[i] == '-')
+	size_t	i;
+
+	i = 0;
+	while (str + i && str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (str + i && str[i] && str[i] == '+')
+		i++;
+	while (str + i && str[i])
 	{
-		if (str[i] == '-')
-			return (-1);
+		if (str[i] < '0' || str[i] > '9')
+			return (true);
+		i++;
 	}
-	return (1);
+	return (false);
 }
 
+#include <stdio.h>
 int	ft_atoi(const char *str)
 {
 	unsigned long long	result;
 	int					i;
-	int					sign;
 
 	result = 0;
-	sign = 1;
-	i = (int)skip_spaces(str);
-	sign = (int)ft_sign(str, i);
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	if (cus_strlen(str) >= 20 && sign == 1)
+	printf("%s\n",str);
+	if (check_char(str))
 		return (-1);
-	if (cus_strlen(str) >= 20 && sign == -1)
-		return (0);
+	i = (int)skip_spaces(str);
+	if (str[i] == '+')
+		i++;
+	if (cus_strlen(str) >= 4)
+		return (-1);
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 	{
+		if (result >= 256)
+			return (-1);
 		result = (result * 10) + str[i] - '0';
 		i++;
 	}
-	if (result >= 9223372036854775807 && sign == 1)
+	if (result >= 256)
 		return (-1);
-	if (result > 9223372036854775807 && sign == -1)
-		return (0);
-	return (result * sign);
+	return (result);
 }
