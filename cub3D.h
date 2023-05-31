@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/30 19:48:53 by abiru            ###   ########.fr       */
+/*   Updated: 2023/05/31 17:54:45 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
+
+//errors
+# define ERR "error"
+# define EXT_ERR "Extra/little color information"
+# define C_INV "Invalid ceiling color code"
+# define F_INV "Invalid floor color code"
+# define C_ABS "Color code not present"
 
 // texture files not present
 # define N_ERR "North texture file not present"
@@ -44,7 +51,23 @@ typedef struct scene_infn
 	int is_duplicate[7];
 	int counter;
 	int **content;
+	char **p_map;
+	unsigned char s_orient;
+	size_t size;
 } t_scene_infn;
 
+// parsing utils
+void init_struct(t_scene_infn *scene);
+void free_split(char **str);
+size_t	get_split_size(char **str);
+bool	is_space(char *str);
+bool	check_duplicate(t_scene_infn *scene, unsigned short index);
+bool	check_empty_field(char **str);
+
+
 char **ft_ssplit(char const *s, char const *items);
+bool	validate_map(int fd, t_scene_infn *scene);
+bool	get_map_size(t_scene_infn *scene, int *map_fd, char *map);
+bool	validate_texture(t_scene_infn *scene, char **str);
+bool	get_colors(t_scene_infn *scene, char **str, char *val);
 #endif

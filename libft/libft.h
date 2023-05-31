@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:03:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/30 19:53:44 by abiru            ###   ########.fr       */
+/*   Updated: 2023/05/31 11:33:01 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 // get_next_line utils
 char	*get_next_line(int fd);
 int		nl_pos(char *str);
+char	*join_free(char *s1, char *s2);
 #endif
