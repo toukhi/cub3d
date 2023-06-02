@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 12:52:18 by abiru             #+#    #+#             */
-/*   Updated: 2022/09/30 14:08:41 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 15:44:36 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strchr(const char *s, int c)
 	char	*temp;
 
 	i = 0;
+	if (!s)
+		return (0);
 	temp = (char *)s;
 	while (temp[i] != '\0' && temp[i] != (unsigned char)c)
 		i++;

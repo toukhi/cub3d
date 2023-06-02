@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/31 17:54:45 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 16:10:48 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <sys/stat.h>
+# include <errno.h>
 
 //errors
-# define ERR "error"
+# define ERR "Error"
 # define EXT_ERR "Extra/little color information"
 # define C_INV "Invalid ceiling color code"
 # define F_INV "Invalid floor color code"
