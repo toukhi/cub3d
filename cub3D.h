@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/02 16:10:48 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:08:10 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define W_EXT "Extra information detected on West texture line"
 # define E_EXT "Extra information detected on East texture line"
 
+#define ERR_EXTENSION "File extension must be .cub"
+#define USG_ERR "Usage: ./cub3D map_file"
 
 typedef struct scene_infn
 {
@@ -56,6 +58,7 @@ typedef struct scene_infn
 	char **p_map;
 	unsigned char s_orient;
 	size_t size;
+	int	map_fd;
 } t_scene_infn;
 
 // parsing utils
@@ -68,8 +71,8 @@ bool	check_empty_field(char **str);
 
 
 char **ft_ssplit(char const *s, char const *items);
-bool	validate_map(int fd, t_scene_infn *scene);
-bool	get_map_size(t_scene_infn *scene, int *map_fd, char *map);
+bool	validate_map(t_scene_infn *scene);
+bool	get_map_size(t_scene_infn *scene, char *map);
 bool	validate_texture(t_scene_infn *scene, char **str);
 bool	get_colors(t_scene_infn *scene, char **str, char *val);
 #endif

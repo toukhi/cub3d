@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/31 17:58:32 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:22:03 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,20 @@ bool	map_detected(char **str)
 	return (true);
 }
 
-bool validate_map_content(int fd, char *str, t_scene_infn *scene)
+bool validate_map_content(char *str, t_scene_infn *scene)
 {
-	(void)fd;
 	(void)str;
 	(void)scene;
 	return (true);
 }
 
-bool	validate_map(int fd, t_scene_infn *scene)
+bool	validate_map(t_scene_infn *scene)
 {
 	char *str;
 	char **str2;
 	char *str3;
 
-	str = get_next_line(fd);
+	str = get_next_line(scene->map_fd);
 	str2 = 0;
 	while (str)
 	{
@@ -51,14 +50,14 @@ bool	validate_map(int fd, t_scene_infn *scene)
 				return (free_split(str2), free(str3), false);
 			else if (map_detected(str2))
 			{
-				if (!validate_map_content(fd, str, scene))
+				if (!validate_map_content(str, scene))
 					return (free_split(str2), free(str3), ft_putendl_fd(ERR, 2), ft_putendl_fd("Invalid map", 2), false);
 				return (free_split(str2), free(str3), true);
 			}
 		}
 		free(str3);
 		free_split(str2);
-		str = get_next_line(fd);
+		str = get_next_line(scene->map_fd);
 	}
 	// should be uncommented after validating map content
 
@@ -77,7 +76,7 @@ bool	validate_map(int fd, t_scene_infn *scene)
 	return (true);
 }
 
-bool	get_map_size(t_scene_infn *scene, int *map_fd, char *map)
+bool	get_map_size(t_scene_infn *scene, char *map)
 {
 	char	**tmp;
 	char	*line;
@@ -87,21 +86,22 @@ bool	get_map_size(t_scene_infn *scene, int *map_fd, char *map)
 	counter = 0;
 	flag = false;
 	tmp = 0;
-	line = get_next_line(*map_fd);
+	line = get_next_line(scene->map_fd);
 	while (line)
 	{
 		tmp = ft_ssplit(line, " \t\n");
 		if (!flag && tmp && map_detected(tmp))
 			flag = true;
+			// && (get_split_size(tmp) >= 1 && ft_strcmp(tmp[0], ""))
 		if (flag)
 			counter++;
 		free(line);
 		free_split(tmp);
-		line = get_next_line(*map_fd);
+		line = get_next_line(scene->map_fd);
 	}
 	scene->size = counter;
 	free(line);
-	close(*map_fd);
-	*map_fd = open(map, O_RDONLY);
+	close(scene->map_fd);
+	scene->map_fd = open(map, O_RDONLY);
 	return (true);
 }

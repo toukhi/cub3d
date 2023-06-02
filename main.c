@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/02 16:38:40 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 17:22:56 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,56 +17,38 @@
 	- checks if the argument ends with .cub
 	- checks if the argument is a directory
 */
-static void	do_init_validation(int ac, char **av)
+static bool	do_init_validation(int ac, char **av, t_scene_infn *scene)
 {
-	int map_fd;
-
 	if (ac != 2)
-	{
-		ft_putendl_fd(ERR, 2);
-		ft_putendl_fd("Usage: ./cub3D map_file", 2);
-		exit(EXIT_FAILURE);
-	}
+		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(USG_ERR, 2), false);
 	if (ft_strlen(av[1]) < 4 || ft_strcmp(av[1] + ft_strlen(av[1]) - 4, ".cub"))
-	{
-		ft_putendl_fd(ERR, 2);
-		ft_putendl_fd("File extension must be .cub", 2);
-		exit(EXIT_FAILURE);
-	}
-	map_fd = open(av[1], O_RDWR);
+		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(ERR_EXTENSION, 2), false);
+	scene->map_fd = open(av[1], O_RDWR);
 	if (errno == EISDIR)
-	{
-		perror("Open");
-		exit(EXIT_FAILURE);
-	}
-	close(map_fd);
+		return (ft_putendl_fd(ERR, 2), perror("Open"), false);
+	close(scene->map_fd);
+	scene->map_fd = open(av[1], O_RDONLY);
+	if (scene->map_fd == -1)
+		return (ft_putendl_fd(ERR, 2), perror("Open"), false);
+	return (true);
 }
 
 int	main(int ac, char **av)
 {
 	t_scene_infn	scene;
-	int				map_fd;
 
-	do_init_validation(ac, av);
-	map_fd = open(av[1], O_RDONLY);
-	if (map_fd == -1)
-	{
-		perror("Open");
-		exit(EXIT_FAILURE);
-	}
+	if (!do_init_validation(ac, av, &scene))
+		return (EXIT_FAILURE);
 	init_struct(&scene);
-	if (!get_map_size(&scene, &map_fd, av[1]))
+	if (!get_map_size(&scene, av[1]))
+		return (ft_putendl_fd(ERR, 2), ft_putendl_fd("Invalid map", 2), EXIT_FAILURE);
+	printf("size: %zu\n", scene.size);
+	if (!validate_map(&scene))
 	{
-		ft_putendl_fd("error", 2);
-		ft_putendl_fd("Invalid map", 2);
-		exit(EXIT_FAILURE);
-	}
-	if (!validate_map(map_fd, &scene))
-	{
-		close(map_fd);
+		close(scene.map_fd);
 		return (EXIT_FAILURE);
 	}
-	close(map_fd);
+	close(scene.map_fd);
 	for (size_t i=0; i<4; i++)
 		if (scene.textures[i])
 			free(scene.textures[i]);
