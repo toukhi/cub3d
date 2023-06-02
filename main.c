@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/02 17:22:56 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 23:43:13 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	init_struct(&scene);
 	if (!get_map_size(&scene, av[1]))
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd("Invalid map", 2), EXIT_FAILURE);
-	printf("size: %zu\n", scene.size);
+	// printf("size: %zu\n", scene.size);
 	if (!validate_map(&scene))
 	{
 		close(scene.map_fd);

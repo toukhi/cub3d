@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/02 17:22:03 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 23:59:29 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ bool	map_detected(char **str)
 	return (true);
 }
 
-bool validate_map_content(char *str, t_scene_infn *scene)
-{
-	(void)str;
-	(void)scene;
-	return (true);
-}
-
+/*
+	- reads a line, trims space character including newline, 
+	then splits the string using tabs and spaces to validate texture information,
+	uses the trimmed string and splits it using comma to validate color information
+*/
 bool	validate_map(t_scene_infn *scene)
 {
 	char *str;
@@ -42,19 +40,19 @@ bool	validate_map(t_scene_infn *scene)
 	while (str)
 	{
 		str3 = ft_strtrim(str, " \t\n");
-		free(str);
 		str2 = ft_ssplit(str3, "\t ");
 		if (str2 && get_split_size(str2))
 		{
 			if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
-				return (free_split(str2), free(str3), false);
+				return (free_split(str2), free(str), free(str3), false);
 			else if (map_detected(str2))
 			{
 				if (!validate_map_content(str, scene))
-					return (free_split(str2), free(str3), ft_putendl_fd(ERR, 2), ft_putendl_fd("Invalid map", 2), false);
+					return (free_split(str2), free(str3), false);
 				return (free_split(str2), free(str3), true);
 			}
 		}
+		free(str);
 		free(str3);
 		free_split(str2);
 		str = get_next_line(scene->map_fd);

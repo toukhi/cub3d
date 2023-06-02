@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_utils.c                                          :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:38:13 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/31 17:54:39 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/02 23:53:46 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,24 @@ bool	check_empty_field(char **str)
 		i++;
 	}
 	return (false);
+}
+
+void	free_map(t_scene_infn *scene, int i)
+{
+	size_t	j;
+	size_t	k;
+
+	if (i == -1)
+		j = scene->size;
+	else
+		j = (size_t)i;
+	k = 0;
+	while (k < j)
+	{
+		free(scene->content[k]);
+		scene->content[k] = 0;
+		k++;
+	}
+	free(scene->content);
+	scene->content = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/02 17:08:10 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/03 00:11:41 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,12 @@
 # define W_EXT "Extra information detected on West texture line"
 # define E_EXT "Extra information detected on East texture line"
 
+// initial validation errors
 #define ERR_EXTENSION "File extension must be .cub"
 #define USG_ERR "Usage: ./cub3D map_file"
+#define BAD_CHAR "Bad character found in map"
+#define DUP_CHAR "Duplicate starting orientation found"
+#define M_ORIENT "Starting orientation is missing"
 
 typedef struct scene_infn
 {
@@ -70,9 +74,11 @@ bool	check_duplicate(t_scene_infn *scene, unsigned short index);
 bool	check_empty_field(char **str);
 
 
-char **ft_ssplit(char const *s, char const *items);
+char	**ft_ssplit(char const *s, char const *items);
 bool	validate_map(t_scene_infn *scene);
 bool	get_map_size(t_scene_infn *scene, char *map);
 bool	validate_texture(t_scene_infn *scene, char **str);
 bool	get_colors(t_scene_infn *scene, char **str, char *val);
+bool	validate_map_content(char *str, t_scene_infn *scene);
+void	free_map(t_scene_infn *scene, int i);
 #endif
