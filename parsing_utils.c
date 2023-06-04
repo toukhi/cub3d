@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:38:13 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/02 23:53:46 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/04 20:39:31 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,32 @@ void	free_map(t_scene_infn *scene, int i)
 	}
 	free(scene->content);
 	scene->content = 0;
+}
+
+size_t	find_row_size(char *arr)
+{
+	size_t	i;
+
+	i = 0;
+	if (!arr)
+		return (i);
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+bool	check_texture(char *str)
+{
+	int	fd;
+
+	fd = open(str, O_RDWR);
+	if (errno == EISDIR)
+		return (ft_putendl_fd(ERR, 2), ft_putendl_fd("Texture is a directory", 2), true);
+	if (fd != -1)
+		close(fd);
+	fd = open(str, O_RDONLY);
+	if (fd == -1)
+		return (ft_putendl_fd(ERR, 2), perror("Open"), true);
+	close(fd);
+	return (false);
 }

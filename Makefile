@@ -6,7 +6,7 @@
 #    By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 16:03:13 by abiru             #+#    #+#              #
-#    Updated: 2023/06/02 23:24:22 by abiru            ###   ########.fr        #
+#    Updated: 2023/06/04 15:40:42 by abiru            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3D
 
 SRCS = main.c ft_ssplit.c parser.c parsing_utils.c texture_parser.c color_parser.c map_parser.c
 
-CC = cc -g3 -fsanitize=address
+CC = cc -g3
 
 CFLAGS = -Wextra -Werror -Wall
 

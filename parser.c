@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/02 23:59:29 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/04 20:30:47 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ bool	map_detected(char **str)
 */
 bool	validate_map(t_scene_infn *scene)
 {
-	char *str;
-	char **str2;
-	char *str3;
+	char	*str;
+	char	**str2;
+	char	*str3;
 
 	str = get_next_line(scene->map_fd);
 	str2 = 0;
@@ -57,20 +57,6 @@ bool	validate_map(t_scene_infn *scene)
 		free_split(str2);
 		str = get_next_line(scene->map_fd);
 	}
-	// should be uncommented after validating map content
-
-	// if (scene->counter < 7)
-	// {
-	// 	ft_putendl_fd(ERR, 2);
-	// 	ft_putendl_fd("Incomplete map", 2);
-	// 	return (false);
-	// }
-	for (int i=0; i<4; i++)
-		printf("%s\n", scene->textures[i]);
-	for (int i=0; i<3; i++)
-		printf("%d, ", scene->ceil_clr[i]);
-	for (int i=0; i<3; i++)
-		printf("%d, ", scene->floor_clr[i]);
 	return (true);
 }
 
@@ -78,10 +64,8 @@ bool	get_map_size(t_scene_infn *scene, char *map)
 {
 	char	**tmp;
 	char	*line;
-	size_t	counter;
 	bool	flag;
 
-	counter = 0;
 	flag = false;
 	tmp = 0;
 	line = get_next_line(scene->map_fd);
@@ -90,14 +74,12 @@ bool	get_map_size(t_scene_infn *scene, char *map)
 		tmp = ft_ssplit(line, " \t\n");
 		if (!flag && tmp && map_detected(tmp))
 			flag = true;
-			// && (get_split_size(tmp) >= 1 && ft_strcmp(tmp[0], ""))
 		if (flag)
-			counter++;
+			scene->size++;
 		free(line);
 		free_split(tmp);
 		line = get_next_line(scene->map_fd);
 	}
-	scene->size = counter;
 	free(line);
 	close(scene->map_fd);
 	scene->map_fd = open(map, O_RDONLY);
