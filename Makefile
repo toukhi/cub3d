@@ -6,13 +6,13 @@
 #    By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 16:03:13 by abiru             #+#    #+#              #
-#    Updated: 2023/06/04 15:40:42 by abiru            ###   ########.fr        #
+#    Updated: 2023/06/05 10:54:30 by abiru            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRCS = main.c ft_ssplit.c parser.c parsing_utils.c texture_parser.c color_parser.c map_parser.c
+SRCS = main.c ft_ssplit.c parser.c parsing_utils.c parsing_utils2.c texture_parser.c color_parser.c map_parser.c
 
 CC = cc -g3
 

@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:24:04 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/04 20:43:09 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/05 11:19:22 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,10 @@ char	**populate_map_arr(char *str, t_scene_infn *scene)
 	return (arr);
 }
 
-/*
-	- looks for bad characters and multiple starting position
-*/
-bool search_bad_chars(char **arr, t_scene_infn *scene)
-{
-	size_t	i;
-	size_t	j;
-
-	i = -1;
-	while (arr[++i])
-	{
-		j = -1;
-		while (arr[i][++j])
-		{
-			if (scene->s_orient != '0' && (arr[i][j] == 'N' || arr[i][j] == 'S'
-				|| arr[i][j] == 'E' || arr[i][j] == 'W'))
-					return (ft_putendl_fd(ERR, 2), ft_putendl_fd(DUP_CHAR, 2), true);
-			if (arr[i][j] != '1' && arr[i][j] != '0' && arr[i][j] != ' '
-				&& arr[i][j] != '\t' && arr[i][j] != 'N' && arr[i][j] != 'S'
-				&& arr[i][j] != 'E' && arr[i][j] != 'W')
-					return (ft_putendl_fd(ERR, 2), ft_putendl_fd(BAD_CHAR, 2), true);
-			if (arr[i][j] == 'N' || arr[i][j] == 'S'
-				|| arr[i][j] == 'E' || arr[i][j] == 'W')
-					scene->s_orient = arr[i][j];
-		}
-	}
-	if (scene->s_orient == '0')
-		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_ORIENT, 2), true);
-	return (false);
-}
-
 void	check_recursively(char **arr, int i, int j, bool *flag)
 {
-	if (i < 0 || j < 0 || !arr[i] || j >= (int)find_row_size(arr[i]) || arr[i][j] == '1')
+	if (i < 0 || j < 0 || !arr[i] || j >= (int)find_row_size(arr[i])
+		|| arr[i][j] == '1')
 		return ;
 	else if (arr[i][j] != '1' && arr[i][j] != ' ' && arr[i][j] != '\t')
 	{
@@ -85,40 +55,40 @@ void	check_recursively(char **arr, int i, int j, bool *flag)
 /*
 	- Map is invalid if:
 	-> if the 1st column's value in a row isn't 1, ' ', or '\t'
-	-> if there is at least 1 item with a value different from 1, ' ', & '\t' on the 1st & last row
-	-> if a space char is found on a column, and the column is found on the 1st or last row 
-											or 1st index or last index of any row,
-											or at any index on the array & the row above or below it has fewer items
-											compared to the current index -> recursively checks for open walls
+	-> if there is at least 1 item with a value different from 
+	1, ' ', & '\t' on the 1st & last row
+	-> if a space char is found on a column, and the column is
+		found on the 1st or last row 
+		or 1st index or last index of any row,
+		or at any index on the array & the row above or below it has fewer items
+		compared to the current index -> recursively checks for open walls
 */
+
 bool	check_open_wall(t_scene_infn *scene, char **arr)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	bool	flag;
 
-	i = 0;
+	i = -1;
 	flag = true;
-	while (arr[i])
+	while (arr[++i])
 	{
-		j = 0;
-		while (arr[i][j])
+		j = -1;
+		while (arr[i][++j])
 		{
-			if ((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1' && arr[i][j] != ' ' && arr[i][j] != '\t'))
-				return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
-			if ((i == 0 || i == (int)scene->size - 1) && (arr[i][j] != '1' && arr[i][j] != ' ' && arr[i][j] != '\t'))
-				return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
-			if (arr[i][j] == '0' && (i == (int)scene->size - 1 || (int)find_row_size(arr[i + 1]) <= j || (int)find_row_size(arr[i - 1]) <= j))
-				return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
-			if ((i == 0 || i == (int)scene->size - 1 || j == 0 || !arr[i][j + 1] || (int)find_row_size(arr[i + 1]) <= j || (int)find_row_size(arr[i - 1]) <= j) && (arr[i][j] == ' ' || arr[i][j] == '\t'))
+			if (check_borders(scene, scene->content, i, j))
+				return (false);
+			if ((i == 0 || i == (int)scene->size - 1 || j == 0
+					|| !arr[i][j + 1] || (int)find_row_size(arr[i + 1]) <= j
+				|| (int)find_row_size(arr[i - 1]) <= j)
+					&& (arr[i][j] == ' ' || arr[i][j] == '\t'))
 			{
 				check_recursively(arr, i, j, &flag);
 				if (!flag)
-					return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
+					return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), 1);
 			}
-			j++;
 		}
-		i++;
 	}
 	return (false);
 }
@@ -148,9 +118,10 @@ bool	construct_map(char **arr, t_scene_infn *scene)
 	// check for multiple starting values (duplicate starting values)
 	// check for open wall
 */
-bool validate_map_content(char *str, t_scene_infn *scene)
+bool	validate_map_content(char *str, t_scene_infn *scene)
 {
-	char **arr;
+	char	**arr;
+
 	arr = populate_map_arr(str, scene);
 	if (!arr)
 		return (false);

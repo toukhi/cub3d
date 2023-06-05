@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/04 20:39:40 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/05 11:28:00 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,38 +45,39 @@
 # define E_EXT "Extra information detected on East texture line"
 
 // initial validation errors
-#define ERR_EXTENSION "File extension must be .cub"
-#define USG_ERR "Usage: ./cub3D map_file"
-#define BAD_CHAR "Bad character found in map"
-#define DUP_CHAR "Duplicate starting orientation found"
-#define M_ORIENT "Starting orientation is missing"
-#define M_OPEN	"Map has open walls"
-#define S_INC "Scene is incomplete"
+# define ERR_EXTENSION "File extension must be .cub"
+# define USG_ERR "Usage: ./cub3D map_file"
+# define BAD_CHAR "Bad character found in map"
+# define DUP_CHAR "Duplicate starting orientation found"
+# define M_ORIENT "Starting orientation is missing"
+# define M_OPEN	"Map has open walls"
+# define S_INC "Scene is incomplete"
 
 typedef struct scene_infn
 {
-	char *textures[4];
-	int floor_clr[3];
-	int ceil_clr[3];
-	int is_duplicate[7];
-	int counter;
-	char **content;
-	char **p_map;
-	unsigned char s_orient;
-	size_t size;
-	int	map_fd;
-} t_scene_infn;
+	char			*textures[4];
+	int				fc;
+	int				cc;
+	int				is_duplicate[7];
+	int				counter;
+	char			**content;
+	char			**p_map;
+	unsigned char	s_orient;
+	size_t			size;
+	int				map_fd;
+}	t_scene_infn;
 
 // parsing utils
-void init_struct(t_scene_infn *scene);
-void free_split(char **str);
+void	init_struct(t_scene_infn *scene);
+void	free_split(char **str);
 size_t	get_split_size(char **str);
 bool	is_space(char *str);
 bool	check_duplicate(t_scene_infn *scene, unsigned short index);
 bool	check_empty_field(char **str);
 size_t	find_row_size(char *arr);
 bool	check_texture(char *str);
-
+bool	search_bad_chars(char **arr, t_scene_infn *scene);
+bool	check_borders(t_scene_infn *scene, char **arr, int i, int j);
 
 char	**ft_ssplit(char const *s, char const *items);
 bool	validate_map(t_scene_infn *scene);

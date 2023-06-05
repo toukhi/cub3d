@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:23:00 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/31 16:38:08 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/05 10:53:08 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-static size_t ft_count(char const *s, char const *items)
+static size_t	ft_count(char const *s, char const *items)
 {
 	bool	flag;
 	size_t	count;
@@ -25,13 +25,13 @@ static size_t ft_count(char const *s, char const *items)
 	i = 0;
 	while (s + i && s[i])
 	{
-			if (!ft_strchr(items, s[i]) && !flag)
-			{
-				flag = true;
-				count++;
-			}
-			else if (ft_strchr(items, s[i]))
-				flag = false;
+		if (!ft_strchr(items, s[i]) && !flag)
+		{
+			flag = true;
+			count++;
+		}
+		else if (ft_strchr(items, s[i]))
+			flag = false;
 		i++;
 	}
 	return (count);
@@ -55,7 +55,7 @@ static char	*ft_cpy(const char *s, char *dst, size_t start, size_t end)
 	return (dst);
 }
 
-static char **split_str(char **res, char *ptr, char const *s, char const *items)
+static char	**split_str(char **res, char *ptr, char const *s, char const *items)
 {
 	size_t	i;
 	size_t	j;
@@ -82,13 +82,13 @@ static char **split_str(char **res, char *ptr, char const *s, char const *items)
 	return (res);
 }
 
-char **ft_ssplit(char const *s, char const *items)
+char	**ft_ssplit(char const *s, char const *items)
 {
-	char *ptr;
-	char **res;
+	char	*ptr;
+	char	**res;
+
 	if (!items || !s)
 		return (0);
-
 	res = (char **)malloc(sizeof(char *) * (ft_count(s, items) + 1));
 	if (!res)
 		return (perror("Malloc"), NULL);
@@ -96,38 +96,5 @@ char **ft_ssplit(char const *s, char const *items)
 	if (!split_str(res, ptr, s, items))
 		return (free(res), NULL);
 	res[ft_count(s, items)] = 0;
-	
 	return (res);
 }
-
-// int main()
-// {
-// 	char *tests[] = {
-// 						"   12, 5,  12   9					", ",", 
-// 						0, 0,
-// 						"225,30,   0 ", ",\n",
-// 						"      	basic string		with	tabs		  ", " 	",
-// 						"      	basic string		with	tabs		  ", "",
-// 						"      	basic string		with	tabs		  ", "      	basic string		with	tabs		  ",
-// 						"", " 	   sd awd",
-// 						"			   			", " 		q",
-// 						" ", "\t\n ",
-// 						0, "",
-// 						",123 321, , , , , , ,", "	 ,"
-// 	};
-// 	char **str;
-
-// 	for (size_t i=0; i<22; i+=2)
-// 	{
-// 		str = ft_ssplit(tests[i], tests[i + 1]);
-// 		size_t j = 0;
-// 		while (str + j && str[j])
-// 		{
-// 			printf("%s\n", str[j]);
-// 			free(str[j]);
-// 			j++;
-// 		}
-// 		printf("\n\n\n");
-// 		free(str);
-// 	}
-// }

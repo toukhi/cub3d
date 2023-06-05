@@ -6,11 +6,23 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/04 20:30:47 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/05 11:26:07 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+bool	check_borders(t_scene_infn *scene, char **arr, int i, int j)
+{
+	if (((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1' && arr[i][j] != ' '
+		&& arr[i][j] != '\t')) || ((i == 0 || i == (int)scene->size - 1)
+		&& (arr[i][j] != '1' && arr[i][j] != ' ' && arr[i][j] != '\t'))
+		|| (arr[i][j] == '0' && (i == (int)scene->size - 1 ||
+		(int)find_row_size(arr[i + 1]) <= j
+			|| (int)find_row_size(arr[i - 1]) <= j)))
+		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
+	return (false);
+}
 
 bool	map_detected(char **str)
 {
@@ -21,6 +33,20 @@ bool	map_detected(char **str)
 		|| !ft_strncmp(str[0], "NO", ft_strlen(str[0]))
 		|| !ft_strncmp(str[0], "SO", ft_strlen(str[0])))
 		return (false);
+	return (true);
+}
+
+static bool	validate_elts(t_scene_infn *scene, char *str, char **str2,
+	char *str3)
+{
+	if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
+		return (free_split(str2), free(str), free(str3), false);
+	else if (map_detected(str2))
+	{
+		if (!validate_map_content(str, scene))
+			return (free_split(str2), free(str3), false);
+		return (free_split(str2), free(str3), true);
+	}
 	return (true);
 }
 
@@ -42,16 +68,8 @@ bool	validate_map(t_scene_infn *scene)
 		str3 = ft_strtrim(str, " \t\n");
 		str2 = ft_ssplit(str3, "\t ");
 		if (str2 && get_split_size(str2))
-		{
-			if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
-				return (free_split(str2), free(str), free(str3), false);
-			else if (map_detected(str2))
-			{
-				if (!validate_map_content(str, scene))
-					return (free_split(str2), free(str3), false);
-				return (free_split(str2), free(str3), true);
-			}
-		}
+			if (!validate_elts(scene, str, str2, str3))
+				return (false);
 		free(str);
 		free(str3);
 		free_split(str2);

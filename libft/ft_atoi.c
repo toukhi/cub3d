@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:48:32 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/31 16:57:53 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/05 11:29:23 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,8 @@ static size_t	find_end(char const *str)
 		i--;
 	return (i);
 }
-// static int	ft_sign(const char *str, int i)
-// {
-// 	if (str[i] == '+' || str[i] == '-')
-// 	{
-// 		if (str[i] == '-')
-// 			return (-1);
-// 	}
-// 	return (1);
-// }
 
-static bool check_char(char const *str, size_t end)
+static bool	check_char(char const *str, size_t end)
 {
 	size_t	i;
 
@@ -83,7 +74,6 @@ static bool check_char(char const *str, size_t end)
 	return (false);
 }
 
-#include <stdio.h>
 int	ft_atoi(const char *str)
 {
 	unsigned long long	result;
@@ -92,7 +82,6 @@ int	ft_atoi(const char *str)
 
 	result = 0;
 	end = find_end(str);
-	// printf("%s\n",str);
 	if (check_char(str, end))
 		return (-1);
 	i = (int)skip_spaces(str);
@@ -111,9 +100,3 @@ int	ft_atoi(const char *str)
 		return (-1);
 	return (result);
 }
-
-// #include <stdio.h>
-// int main(int ac, char **av)
-// {
-// 	printf("%d\n", ft_atoi(av[1]));
-// }

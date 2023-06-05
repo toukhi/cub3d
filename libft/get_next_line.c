@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 19:04:20 by abiru             #+#    #+#             */
-/*   Updated: 2023/05/31 23:06:42 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/05 11:28:35 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*join_free(char *s1, char *s2)
 	return (tmp);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*fd_table;
 	int			size;
@@ -52,18 +52,3 @@ char *get_next_line(int fd)
 	free(buffer);
 	return (fd_table);
 }
-
-
-
-// int main()
-// {
-// 	int fd = open("test", O_RDONLY);
-// 	char *str = get_next_line(fd);
-// 	while (str)
-// 	{
-// 		printf("%s", str);
-// 		free(str);
-// 		str = get_next_line(fd);
-// 	}
-// 	free(str);
-// }
