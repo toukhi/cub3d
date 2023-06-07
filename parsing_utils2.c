@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:54:09 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/05 11:25:55 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/07 16:37:11 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ bool	check_empty_field(char **str)
 	size_t	i;
 
 	i = 0;
-	while (str + i && str[i])
+	if (!str)
+		return (false);
+	while (str[i])
 	{
 		if (is_space(str[i]))
 			return (true);

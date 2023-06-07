@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/04 20:42:42 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/07 17:30:51 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	cleanup(t_scene_infn *scene)
 {
 	int	i;
 
-	free_split(scene->content);
+	if (scene->content)
+		free_split(scene->content);
 	i = 0;
 	while (i < 4)
 	{
@@ -74,7 +75,7 @@ int	main(int ac, char **av)
 	if (!validate_map(&scene))
 	{
 		close(scene.map_fd);
-		return (1);
+		return (cleanup(&scene), 1);
 	}
 	close(scene.map_fd);
 	if (scene.counter != 7)

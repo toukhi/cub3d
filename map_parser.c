@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:24:04 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/05 11:19:22 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/07 17:44:10 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**populate_map_arr(char *str, t_scene_infn *scene)
 
 	arr = (char **)malloc(sizeof(char *) * (scene->size + 1));
 	if (!arr)
-		return (ft_putendl_fd(ERR, 2), perror("Malloc"), NULL);
+		return (free(str), ft_putendl_fd(ERR, 2), perror("Malloc"), NULL);
 	i = 0;
 	while (str)
 	{
@@ -78,7 +78,7 @@ bool	check_open_wall(t_scene_infn *scene, char **arr)
 		while (arr[i][++j])
 		{
 			if (check_borders(scene, scene->content, i, j))
-				return (false);
+				return (true);
 			if ((i == 0 || i == (int)scene->size - 1 || j == 0
 					|| !arr[i][j + 1] || (int)find_row_size(arr[i + 1]) <= j
 				|| (int)find_row_size(arr[i - 1]) <= j)

@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:38:13 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/05 10:54:05 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/07 16:36:19 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_split(char **str)
 	i = 0;
 	if (!str)
 		return ;
-	while (str + i && str[i])
+	while (str[i])
 	{
 		free(str[i]);
 		str[i] = 0;
@@ -51,7 +51,9 @@ size_t	get_split_size(char **str)
 	size_t	i;
 
 	i = 0;
-	while (str + i && str[i])
+	if (!str)
+		return (0);
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -61,7 +63,9 @@ bool	is_space(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str + i && str[i])
+	if (!str)
+		return (false);
+	while (str[i])
 	{
 		if (str[i] != ' ' && str[i] != '\t')
 			return (false);

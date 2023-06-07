@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:23:00 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/05 10:53:08 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/07 16:34:28 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static size_t	ft_count(char const *s, char const *items)
 	flag = false;
 	count = 0;
 	i = 0;
-	while (s + i && s[i])
+	if (!s)
+		return (0);
+	while (s[i])
 	{
 		if (!ft_strchr(items, s[i]) && !flag)
 		{

@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:48:32 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/05 11:29:23 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/07 16:46:12 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	find_end(char const *str)
 
 	i = ft_strlen(str);
 	--i;
-	while (i >= 0 && str[i] && (str[i] == '\t' || str[i] == ' '))
+	while (str[i] && (str[i] == '\t' || str[i] == ' '))
 		i--;
 	return (i);
 }
@@ -61,11 +61,11 @@ static bool	check_char(char const *str, size_t end)
 	size_t	i;
 
 	i = 0;
-	while (i <= end && str + i && str[i] && (str[i] == ' ' || str[i] == '\t'))
+	while (i <= end && str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
-	if (str + i && str[i] && str[i] == '+')
+	if (str[i] && str[i] == '+')
 		i++;
-	while (i <= end && str + i && str[i])
+	while (i <= end && str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
 			return (true);
