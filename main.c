@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/07 17:30:51 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/11 17:42:03 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,6 @@ static void	cleanup(t_scene_infn *scene)
 	}
 }
 
-bool	check_textures(t_scene_infn *scene)
-{
-	unsigned short	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (check_texture(scene->textures[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
 int	main(int ac, char **av)
 {
 	t_scene_infn	scene;
@@ -81,8 +67,6 @@ int	main(int ac, char **av)
 	if (scene.counter != 7)
 		return (cleanup(&scene), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
-	if (!check_textures(&scene))
-		return (cleanup(&scene), 1);
 	cleanup(&scene);
 	return (0);
 }

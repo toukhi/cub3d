@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/05 11:28:00 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/11 17:34:28 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # define S_ERR "South texture file not present"
 # define W_ERR "West texture file not present"
 # define E_ERR "East texture file not present"
+
+// texture file not having .xpm extension
+# define N_INEXT "North texture file must have .xpm extension"
+# define S_INEXT "South texture file must have .xpm extension"
+# define W_INEXT "West texture file must have .xpm extension"
+# define E_INEXT "East texture file must have .xpm extension"
 
 // duplicate texture error messages
 # define N_DUP "North texture duplicate found"
@@ -75,7 +81,7 @@ bool	is_space(char *str);
 bool	check_duplicate(t_scene_infn *scene, unsigned short index);
 bool	check_empty_field(char **str);
 size_t	find_row_size(char *arr);
-bool	check_texture(char *str);
+bool	check_texture(char *str, char *msg);
 bool	search_bad_chars(char **arr, t_scene_infn *scene);
 bool	check_borders(t_scene_infn *scene, char **arr, int i, int j);
 

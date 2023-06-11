@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:54:09 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/07 16:37:11 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/11 17:37:26 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,20 @@ size_t	find_row_size(char *arr)
 	return (i);
 }
 
-bool	check_texture(char *str)
+bool	check_texture(char *str, char *msg)
 {
 	int	fd;
 
 	fd = open(str, O_RDWR);
 	if (errno == EISDIR)
-		return (ft_putendl_fd(ERR, 2),
+		return (ft_putendl_fd(ERR, 2), ft_putstr_fd(msg, 2),
 			ft_putendl_fd("Texture is a directory", 2), true);
 	if (fd != -1)
 		close(fd);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		return (ft_putendl_fd(ERR, 2), perror("Open"), true);
+		return (ft_putendl_fd(ERR, 2), ft_putstr_fd(msg, 2),
+				perror(""), true);
 	close(fd);
 	return (false);
 }

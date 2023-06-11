@@ -6,13 +6,13 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:24:04 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/07 17:44:10 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/11 17:18:24 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char	**populate_map_arr(char *str, t_scene_infn *scene)
+char	**construct_map(char *str, t_scene_infn *scene)
 {
 	size_t	i;
 	char	*str2;
@@ -35,21 +35,32 @@ char	**populate_map_arr(char *str, t_scene_infn *scene)
 	return (arr);
 }
 
-void	check_recursively(char **arr, int i, int j, bool *flag)
+static bool	check_spaces(t_scene_infn *scene, int i, int j)
 {
-	if (i < 0 || j < 0 || !arr[i] || j >= (int)find_row_size(arr[i])
-		|| arr[i][j] == '1')
-		return ;
-	else if (arr[i][j] != '1' && arr[i][j] != ' ' && arr[i][j] != '\t')
+	if (scene->content[i][j] == ' ' || scene->content[i][j] == '\t')
 	{
-		*flag = false;
-		return ;
+		if (i > 0 && (int)find_row_size(scene->content[i - 1]) >= j
+			&& scene->content[i - 1][j] && !(scene->content[i - 1][j] == '1'
+			|| scene->content[i - 1][j] == ' '
+			|| scene->content[i - 1][j] == '\t'))
+			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
+		else if (i < (int)scene->size - 1
+			&& (int)find_row_size(scene->content[i + 1]) >= j
+			&& scene->content[i + 1][j] && !(scene->content[i + 1][j] == '1'
+			|| scene->content[i + 1][j] == ' '
+			|| scene->content[i + 1][j] == '\t'))
+			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
+		else if (j > 0 && !(scene->content[i][j - 1] == '1'
+			|| scene->content[i][j - 1] == ' '
+			|| scene->content[i][j - 1] == '\t'))
+			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
+		else if (j < (int)find_row_size(scene->content[i]) - 1
+			&& !(scene->content[i][j + 1] == '1'
+			|| scene->content[i][j + 1] == ' '
+			|| scene->content[i][j + 1] == '\t'))
+			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 	}
-	arr[i][j] = '1';
-	check_recursively(arr, i - 1, j, flag);
-	check_recursively(arr, i + 1, j, flag);
-	check_recursively(arr, i, j - 1, flag);
-	check_recursively(arr, i, j + 1, flag);
+	return (false);
 }
 
 /*
@@ -57,21 +68,15 @@ void	check_recursively(char **arr, int i, int j, bool *flag)
 	-> if the 1st column's value in a row isn't 1, ' ', or '\t'
 	-> if there is at least 1 item with a value different from 
 	1, ' ', & '\t' on the 1st & last row
-	-> if a space char is found on a column, and the column is
-		found on the 1st or last row 
-		or 1st index or last index of any row,
-		or at any index on the array & the row above or below it has fewer items
-		compared to the current index -> recursively checks for open walls
+	-> if a space char is found on any column, and it is not 
+		surrounded by 1 or ' ' or '\t'
 */
-
-bool	check_open_wall(t_scene_infn *scene, char **arr)
+static bool	check_open_wall(t_scene_infn *scene, char **arr)
 {
 	int		i;
 	int		j;
-	bool	flag;
 
 	i = -1;
-	flag = true;
 	while (arr[++i])
 	{
 		j = -1;
@@ -79,37 +84,30 @@ bool	check_open_wall(t_scene_infn *scene, char **arr)
 		{
 			if (check_borders(scene, scene->content, i, j))
 				return (true);
-			if ((i == 0 || i == (int)scene->size - 1 || j == 0
-					|| !arr[i][j + 1] || (int)find_row_size(arr[i + 1]) <= j
-				|| (int)find_row_size(arr[i - 1]) <= j)
-					&& (arr[i][j] == ' ' || arr[i][j] == '\t'))
-			{
-				check_recursively(arr, i, j, &flag);
-				if (!flag)
-					return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), 1);
-			}
+			if (check_spaces(scene, i, j))
+				return (true);
 		}
 	}
 	return (false);
 }
 
-bool	construct_map(char **arr, t_scene_infn *scene)
+static void	replace_spaces(t_scene_infn *scene)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (!arr)
-		return (false);
-	scene->content = (char **)malloc(sizeof(char *) * (scene->size + 1));
-	if (!scene->content)
-		return (ft_putendl_fd(ERR, 2), perror("Malloc"), false);
-	while (arr[i])
+	while (scene->content[i])
 	{
-		scene->content[i] = ft_strdup(arr[i]);
+		j = 0;
+		while (scene->content[i][j])
+		{
+			if (scene->content[i][j] == ' ' || scene->content[i][j] == '\t')
+				scene->content[i][j] = '1';
+			j++;
+		}
 		i++;
 	}
-	scene->content[i] = 0;
-	return (true);
 }
 
 /*
@@ -120,18 +118,14 @@ bool	construct_map(char **arr, t_scene_infn *scene)
 */
 bool	validate_map_content(char *str, t_scene_infn *scene)
 {
-	char	**arr;
-
-	arr = populate_map_arr(str, scene);
-	if (!arr)
+	scene->content = construct_map(str, scene);
+	if (!scene->content)
 		return (false);
-	if (search_bad_chars(arr, scene))
-		return (free_split(arr), false);
-	if (!construct_map(arr, scene))
-		return (free_split(arr), false);
-	if (check_open_wall(scene, arr))
-		return (free_split(arr), free_map(scene, -1), false);
-	free_split(arr);
+	if (search_bad_chars(scene->content, scene))
+		return (free_map(scene, -1), false);
+	if (check_open_wall(scene, scene->content))
+		return (free_map(scene, -1), false);
+	replace_spaces(scene);
 	scene->counter++;
 	return (true);
 }
