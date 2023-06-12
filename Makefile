@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+         #
+#    By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 16:03:13 by abiru             #+#    #+#              #
-#    Updated: 2023/06/05 10:54:30 by abiru            ###   ########.fr        #
+#    Updated: 2023/06/11 16:32:54 by yel-touk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,21 @@ LIBFT = ./libft/libft.a
 
 LIBFT_DIR = ./libft
 
+MLX		= mlx/libmlx.a
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
+	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(LIBFT) -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean:
 	@make clean -C $(LIBFT_DIR)
 	rm -rf $(OBJS)
+	@make clean -C mlx
 
 fclean: clean
 	@make fclean -C $(LIBFT_DIR)
