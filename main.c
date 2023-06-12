@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/11 17:42:03 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/12 18:44:51 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	cleanup(t_scene_infn *scene)
 int	main(int ac, char **av)
 {
 	t_scene_infn	scene;
+	t_vars			vars;
 
 	if (!do_init_validation(ac, av, &scene))
 		return (1);
@@ -68,5 +69,9 @@ int	main(int ac, char **av)
 		return (cleanup(&scene), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
 	cleanup(&scene);
+	init_window(&vars);
+	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
+	mlx_loop(vars.mlx);
+	quit(&vars);
 	return (0);
 }
