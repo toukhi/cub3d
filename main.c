@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/14 15:38:28 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:46:37 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	main(int ac, char **av)
 			ft_putendl_fd(S_INC, 2), 1);
 	init_window(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
+	mlx_hook(vars.win, 17, 0, quit, &vars);
 	mlx_loop(vars.mlx);
-	quit(&vars, &scene);
-	return (0);
 }
