@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/12 19:08:46 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:38:33 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,11 @@ bool	validate_texture(t_scene_infn *scene, char **str);
 bool	get_colors(t_scene_infn *scene, char **str, char *val);
 bool	validate_map_content(char *str, t_scene_infn *scene);
 void	free_map(t_scene_infn *scene, int i);
+void	cleanup(t_scene_infn *scene);
 
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
-int		quit(t_vars *vars);
+int		quit(t_vars *vars, t_scene_infn *scene);
 
 #endif

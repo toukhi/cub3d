@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/12 18:44:51 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:38:28 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static bool	do_init_validation(int ac, char **av, t_scene_infn *scene)
 	return (true);
 }
 
-static void	cleanup(t_scene_infn *scene)
+void	cleanup(t_scene_infn *scene)
 {
 	int	i;
 
@@ -68,10 +68,9 @@ int	main(int ac, char **av)
 	if (scene.counter != 7)
 		return (cleanup(&scene), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
-	cleanup(&scene);
 	init_window(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_loop(vars.mlx);
-	quit(&vars);
+	quit(&vars, &scene);
 	return (0);
 }
