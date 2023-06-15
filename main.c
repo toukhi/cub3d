@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 19:22:56 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:19:47 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ void	cleanup(t_scene_infn *scene)
 	}
 }
 
+// void	draw_map(t_vars *vars)
+// {
+// 	int map_width;
+// 	int	map_height;
+	
+// 	map_width = WIN_WIDTH;
+// 	map_height = WIN_HEIGHT / vars.scene.size;
+// }
+
 int	main(int ac, char **av)
 {
 	t_vars	vars;
@@ -68,8 +77,9 @@ int	main(int ac, char **av)
 		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
 	init_window(&vars);
+	// draw_map();
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_hook(vars.win, 17, 0, quit, &vars);
+	mlx_hook(vars.win, RED_CROSS, 0, quit, &vars);
 	mlx_loop(vars.mlx);
 }
