@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 20:29:29 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/15 20:41:48 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # define M_ORIENT "Starting orientation is missing"
 # define M_OPEN	"Map has open walls"
 # define S_INC "Scene is incomplete"
+# define ERR_L_EMP "Empty line detected"
 
 // window attributes
 # define WIN_WIDTH 1200

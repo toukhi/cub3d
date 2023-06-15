@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:24:04 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 20:36:40 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/15 20:46:42 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static bool	check_spaces(t_scene_infn *scene, int i, int j)
 
 /*
 	- Map is invalid if:
+	-> it contains an empty line
 	-> if the 1st column's value in a row isn't 1, ' ', or '\t'
 	-> if there is at least 1 item with a value different from 
 	1, ' ', & '\t' on the 1st & last row
@@ -80,6 +81,8 @@ static bool	check_open_wall(t_scene_infn *scene, char **arr)
 	while (arr[++i])
 	{
 		j = -1;
+		if (!ft_strlen(arr[i]))
+			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(ERR_L_EMP, 2), true);
 		while (arr[i][++j])
 		{
 			if (check_borders(scene, scene->content, i, j))
@@ -128,6 +131,5 @@ bool	validate_map_content(char *str, t_scene_infn *scene)
 	replace_spaces(scene);
 	set_longest_line(scene);
 	scene->counter++;
-	printf("%zu\n", scene->longest);
 	return (true);
 }
