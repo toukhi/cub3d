@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 20:16:22 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:29:29 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct scene_infn
 	unsigned char	s_orient;
 	size_t			size;
 	int				map_fd;
+	size_t			longest;
 }	t_scene_infn;
 
 typedef struct s_data {
@@ -125,6 +126,7 @@ bool	get_colors(t_scene_infn *scene, char **str, char *val);
 bool	validate_map_content(char *str, t_scene_infn *scene);
 void	free_map(t_scene_infn *scene, int i);
 void	cleanup(t_scene_infn *scene);
+void	set_longest_line(t_scene_infn *scene);
 
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

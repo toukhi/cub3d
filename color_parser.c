@@ -6,11 +6,24 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:53:15 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/05 10:42:56 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/15 20:27:37 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	set_longest_line(t_scene_infn *scene)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < scene->size)
+	{
+		if (ft_strlen(scene->content[i]) > scene->longest)
+			scene->longest = ft_strlen(scene->content[i]);
+		i++;
+	}
+}
 
 static int	find_clr(int a, int b, int c)
 {

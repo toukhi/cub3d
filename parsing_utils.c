@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:38:13 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/07 16:36:19 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/15 20:24:37 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_struct(t_scene_infn *scene)
 	scene->size = 0;
 	scene->s_orient = '0';
 	scene->content = 0;
+	scene->longest = 0;
 	while (++i < 7)
 		scene->is_duplicate[i] = 0;
 	i = -1;
