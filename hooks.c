@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/15 19:46:48 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:16:47 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	key_hook(int keycode, t_vars *vars)
 {
 	printf("Key code: %d\n", keycode);
-	if (keycode == 53)
+	if (keycode == ESC)
 		quit(vars);
-	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+	if (keycode == W || keycode == A || keycode == S || keycode == D)
 	{
 		//move character
 	}
-	if (keycode == 126 || keycode == 123 || keycode == 125 || keycode == 124)
+	if (keycode == UP_ARROW || keycode == LEFT_ARROW || keycode == DOWN_ARROW || keycode == RIGHT_ARROW)
 	{
 		//rotate character
 	}

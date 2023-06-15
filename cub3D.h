@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 19:23:31 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:16:22 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,18 @@
 // window attributes
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 800
+# define RED_CROSS 17
+
+//key values
+# define ESC 53
+# define W 53
+# define A 0
+# define S 1
+# define D 2
+# define UP_ARROW 126
+# define LEFT_ARROW 123
+# define DOWN_ARROW 125
+# define RIGHT_ARROW 124
 
 typedef struct scene_infn
 {
