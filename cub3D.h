@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 18:44:37 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/15 19:18:39 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,6 @@ void	cleanup(t_scene_infn *scene);
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
-int		quit(t_vars *vars, t_scene_infn *scene);
+int		quit(t_vars *vars);
 
 #endif

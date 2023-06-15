@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/14 15:32:56 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:19:04 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	init_window(t_vars *vars)
 			&vars->image.endian);
 }
 
-int	quit(t_vars *vars, t_scene_infn *scene)
+int	quit(t_vars *vars)
 {
-	cleanup(scene);
+	cleanup(&vars->scene);
 	mlx_destroy_image(vars->mlx, vars->image.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(EXIT_SUCCESS);
