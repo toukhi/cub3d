@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/14 15:38:33 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/15 18:44:37 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,10 @@ typedef struct s_data {
 }				t_data;
 
 typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-	t_data	image;
+	void			*mlx;
+	void			*win;
+	t_data			image;
+	t_scene_infn	scene;
 }				t_vars;
 
 // parsing utils
