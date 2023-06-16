@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 15:24:00 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/16 15:43:14 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 # define WIN_HEIGHT 800
 # define RED_CROSS 17
 
-//key values
+// key values
 # define ESC 53
 # define W 53
 # define A 0
@@ -77,6 +77,11 @@
 # define DOWN_ARROW 125
 # define RIGHT_ARROW 124
 
+// colors
+# define CAMEL 0x00C19A6B
+# define GRAY 0x00808080
+# define WHITE 0x00FFFFFF
+
 typedef struct scene_infn
 {
 	char			*textures[4];
@@ -85,11 +90,11 @@ typedef struct scene_infn
 	int				is_duplicate[7];
 	int				counter;
 	char			**content;
+	char			**minimap;
 	unsigned char	s_orient;
 	size_t			size;
 	int				map_fd;
 	size_t			longest;
-	char			**minimap;
 }	t_scene_infn;
 
 typedef struct s_data {
@@ -128,12 +133,14 @@ bool	validate_map_content(char *str, t_scene_infn *scene);
 void	free_map(t_scene_infn *scene, int i);
 void	cleanup(t_scene_infn *scene);
 void	set_longest_line(t_scene_infn *scene);
+bool	create_minimap(t_scene_infn *scene);
 
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
 int		quit(t_vars *vars);
 
-int	key_hook(int keycode, t_vars *vars);
+int		key_hook(int keycode, t_vars *vars);
+void	draw_minimap(t_vars *vars);
 
 #endif

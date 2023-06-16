@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 20:19:47 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:44:52 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ static bool	do_init_validation(int ac, char **av, t_scene_infn *scene)
 
 void	cleanup(t_scene_infn *scene)
 {
-	int	i;
+	unsigned char	i;
 
 	if (scene->content)
 		free_split(scene->content);
+	if (scene->minimap)
+		free_split(scene->minimap);
 	i = 0;
 	while (i < 4)
 	{
@@ -48,15 +50,6 @@ void	cleanup(t_scene_infn *scene)
 		i++;
 	}
 }
-
-// void	draw_map(t_vars *vars)
-// {
-// 	int map_width;
-// 	int	map_height;
-	
-// 	map_width = WIN_WIDTH;
-// 	map_height = WIN_HEIGHT / vars.scene.size;
-// }
 
 int	main(int ac, char **av)
 {
@@ -77,7 +70,7 @@ int	main(int ac, char **av)
 		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
 	init_window(&vars);
-	// draw_map();
+	draw_minimap(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, RED_CROSS, 0, quit, &vars);

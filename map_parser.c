@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:24:04 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 20:46:42 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/16 15:48:04 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ bool	validate_map_content(char *str, t_scene_infn *scene)
 		return (free_map(scene, -1), false);
 	replace_spaces(scene);
 	set_longest_line(scene);
+	if (!create_minimap(scene))
+		return (free_map(scene, -1), false);
 	scene->counter++;
 	return (true);
 }
