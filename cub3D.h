@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/15 20:41:48 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/16 15:24:00 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ typedef struct scene_infn
 	int				is_duplicate[7];
 	int				counter;
 	char			**content;
-	char			**p_map;
 	unsigned char	s_orient;
 	size_t			size;
 	int				map_fd;
 	size_t			longest;
+	char			**minimap;
 }	t_scene_infn;
 
 typedef struct s_data {
