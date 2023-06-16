@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 14:58:19 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/16 15:24:34 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int ac, char **av)
 		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
 	init_window(&vars);
-	draw_map(&vars);
+	draw_minimap(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_hook(vars.win, RED_CROSS, 0, quit, &vars);
