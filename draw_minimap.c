@@ -31,7 +31,6 @@ void	draw_square(t_data *data, int x, int y, int color)
 
 void	draw_minimap(t_vars *vars)
 {
-	// draw_square(&vars->image, 0, 0, GRAY);
 	size_t	i;
 	size_t	j;
     int x;
@@ -43,19 +42,13 @@ void	draw_minimap(t_vars *vars)
 	{
         x = 0;
 		j = 0;
-		while (j < ft_strlen(vars->scene.content[i]))
+		while (j < ft_strlen(vars->scene.minimap[i]))
 		{
-            draw_square(&vars->image, x, y, get_color(vars->scene.content[i][j]));
+            draw_square(&vars->image, x, y, get_color(vars->scene.minimap[i][j]));
             x += 15;
             j++;
 		}
 		i++;
         y += 15;
 	}
-
-	// int map_width;
-	// int	map_height;
-	
-	// map_width = WIN_WIDTH;
-	// map_height = WIN_HEIGHT / vars.scene.size;
 }
