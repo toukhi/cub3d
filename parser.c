@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 15:45:44 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/17 14:39:58 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ bool	validate_map(t_scene_infn *scene)
 		str2 = ft_ssplit(str3, "\t ");
 		if (str2 && get_split_size(str2))
 		{
-			// if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
-			// 	return (free_split(str2), free(str), free(str3), false);
+			if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
+				return (free_split(str2), free(str), free(str3), false);
 			if (map_detected(str2))
 			{
 				if (!validate_map_content(str, scene))
