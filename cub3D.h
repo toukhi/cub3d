@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/17 15:34:33 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:30:48 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 # include "./libft/libft.h"
 # include "mlx/mlx.h"
+# include <math.h>
 # include <fcntl.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -81,6 +82,7 @@
 # define CAMEL 0x00C19A6B
 # define GRAY 0x00808080
 # define WHITE 0x00FFFFFF
+# define RED 0x00FF0000
 
 typedef struct scene_infn
 {
@@ -99,13 +101,17 @@ typedef struct scene_infn
 	size_t			longest;
 }	t_scene_infn;
 
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+}	t_vector;
+
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	float	fov;
+	t_vector	pos;
+	t_vector	dir;
+	t_vector	plane;
 }	t_player;
 
 // typedef struct s_map
