@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 15:43:14 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/17 15:34:33 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,32 @@ typedef struct scene_infn
 	char			**content;
 	char			**minimap;
 	unsigned char	s_orient;
+	int				s_pos_x;
+	int				s_pos_y;
 	size_t			size;
 	int				map_fd;
 	size_t			longest;
 }	t_scene_infn;
 
-typedef struct s_data {
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	float	fov;
+}	t_player;
+
+// typedef struct s_map
+// {
+// 	size_t		width;
+// 	size_t		height;
+// 	t_player	player;
+// }	t_map;
+
+
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -105,11 +125,14 @@ typedef struct s_data {
 	int		endian;
 }				t_data;
 
-typedef struct s_vars {
+typedef struct s_vars
+{
 	void			*mlx;
 	void			*win;
 	t_data			image;
 	t_scene_infn	scene;
+	t_player		player;
+	// t_map			map;
 }				t_vars;
 
 // parsing utils

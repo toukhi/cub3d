@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 15:44:52 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/17 15:46:29 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ void	cleanup(t_scene_infn *scene)
 		scene->textures[i] = 0;
 		i++;
 	}
+}
+
+void	init_player(t_vars *vars)
+{
+	vars->player.pos_x = vars->scene.s_pos_x - 0.5;
+	vars->player.pos_y = vars->scene.s_pos_y - 0.5;
+	// if (vars->scene.s_orient == 'N')
+		// vars->player.dir_x = 
 }
 
 int	main(int ac, char **av)

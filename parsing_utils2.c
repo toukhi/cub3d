@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:54:09 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/11 17:37:26 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/17 15:41:00 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,13 @@ bool	check_texture(char *str, char *msg)
 	return (false);
 }
 
+void	set_start_pos(t_scene_infn *scene, int x, int y, char orientation)
+{
+	scene->s_orient = orientation;
+	scene->s_pos_x = x;
+	scene->s_pos_y = y;
+}
+
 /*
 	- looks for bad characters and multiple starting position
 */
@@ -101,7 +108,7 @@ bool	search_bad_chars(char **arr, t_scene_infn *scene)
 				return (ft_putendl_fd(ERR, 2), ft_putendl_fd(BAD_CHAR, 2), 1);
 			if (arr[i][j] == 'N' || arr[i][j] == 'S'
 				|| arr[i][j] == 'E' || arr[i][j] == 'W')
-					scene->s_orient = arr[i][j];
+					set_start_pos(scene, j, i, arr[i][j]);
 		}
 	}
 	if (scene->s_orient == '0')
