@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/17 15:46:29 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:33:31 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,32 @@ void	cleanup(t_scene_infn *scene)
 
 void	init_player(t_vars *vars)
 {
-	vars->player.pos_x = vars->scene.s_pos_x - 0.5;
-	vars->player.pos_y = vars->scene.s_pos_y - 0.5;
-	// if (vars->scene.s_orient == 'N')
-		// vars->player.dir_x = 
+	vars->player.pos.x = vars->scene.s_pos_x - 0.5;
+	vars->player.pos.y = vars->scene.s_pos_y - 0.5;
+	vars->player.dir.x = 0;
+	vars->player.dir.y = 0;
+	vars->player.plane.x = 0;
+	vars->player.plane.y = 0;
+	if (vars->scene.s_orient == 'N')
+	{
+		vars->player.dir.y--;
+		vars->player.plane.x = 0.66;
+	}
+	if (vars->scene.s_orient == 'E')
+	{
+		vars->player.dir.x++;
+		vars->player.plane.y = 0.66;
+	}
+	if (vars->scene.s_orient == 'S')
+	{
+		vars->player.dir.y++;
+		vars->player.plane.x = -0.66;
+	}
+	if (vars->scene.s_orient == 'W')
+	{
+		vars->player.dir.x--;
+		vars->player.plane.y = -0.66;
+	}
 }
 
 int	main(int ac, char **av)
@@ -78,6 +100,8 @@ int	main(int ac, char **av)
 		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
 	init_window(&vars);
+	init_player(&vars);
+	printf("player coordinates: x:%f, y:%f\n", vars.player.pos.x, vars.player.pos.y);
 	draw_minimap(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
