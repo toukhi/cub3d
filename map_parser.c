@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:24:04 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 15:48:04 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/19 18:34:47 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,28 @@ char	**construct_map(char *str, t_scene_infn *scene)
 
 static bool	check_spaces(t_scene_infn *scene, int i, int j)
 {
-	if (scene->content[i][j] == ' ' || scene->content[i][j] == '\t')
+	if (ft_isspace(scene->content[i][j]) && (i == 0 ||
+	i == (int)(scene->size - 1) || (i != 0 && i !=
+	(int)(scene->size - 1) && ((int)find_row_size(scene->content[i - 1]) <= j
+	|| (int)find_row_size(scene->content[i + 1]) <= j))))
+		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
+	if (ft_isspace(scene->content[i][j]))
 	{
 		if (i > 0 && (int)find_row_size(scene->content[i - 1]) >= j
 			&& scene->content[i - 1][j] && !(scene->content[i - 1][j] == '1'
-			|| scene->content[i - 1][j] == ' '
-			|| scene->content[i - 1][j] == '\t'))
+			|| ft_isspace(scene->content[i - 1][j])))
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 		else if (i < (int)scene->size - 1
 			&& (int)find_row_size(scene->content[i + 1]) >= j
 			&& scene->content[i + 1][j] && !(scene->content[i + 1][j] == '1'
-			|| scene->content[i + 1][j] == ' '
-			|| scene->content[i + 1][j] == '\t'))
+			|| ft_isspace(scene->content[i + 1][j])))
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 		else if (j > 0 && !(scene->content[i][j - 1] == '1'
-			|| scene->content[i][j - 1] == ' '
-			|| scene->content[i][j - 1] == '\t'))
+			|| ft_isspace(scene->content[i][j - 1])))
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 		else if (j < (int)find_row_size(scene->content[i]) - 1
 			&& !(scene->content[i][j + 1] == '1'
-			|| scene->content[i][j + 1] == ' '
-			|| scene->content[i][j + 1] == '\t'))
+			|| ft_isspace(scene->content[i][j + 1])))
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 	}
 	return (false);
@@ -105,7 +106,7 @@ static void	replace_spaces(t_scene_infn *scene)
 		j = 0;
 		while (scene->content[i][j])
 		{
-			if (scene->content[i][j] == ' ' || scene->content[i][j] == '\t')
+			if (ft_isspace(scene->content[i][j]))
 				scene->content[i][j] = '1';
 			j++;
 		}

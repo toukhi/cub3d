@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:23:00 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/07 16:34:28 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/19 17:23:20 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static char	**split_str(char **res, char *ptr, char const *s, char const *items)
 			while (res[i])
 				free(res[i++]);
 			free(res);
-			return (NULL);
+			return (ft_putendl_fd(ERR, 2), perror("Malloc"), NULL);
 		}
 		ft_cpy(s, ptr, j, find_end(j, s, items));
 		j = find_end(j, s, items);
@@ -93,7 +93,7 @@ char	**ft_ssplit(char const *s, char const *items)
 		return (0);
 	res = (char **)malloc(sizeof(char *) * (ft_count(s, items) + 1));
 	if (!res)
-		return (perror("Malloc"), NULL);
+		return (ft_putendl_fd(ERR, 2), perror("Malloc"), NULL);
 	ptr = 0;
 	if (!split_str(res, ptr, s, items))
 		return (free(res), NULL);

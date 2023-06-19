@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/17 14:39:58 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:40:30 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 bool	check_borders(t_scene_infn *scene, char **arr, int i, int j)
 {
-	if (((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1' && arr[i][j] != ' '
-		&& arr[i][j] != '\t')) || ((i == 0 || i == (int)scene->size - 1)
-		&& (arr[i][j] != '1' && arr[i][j] != ' ' && arr[i][j] != '\t'))
-		|| (arr[i][j] == '0' && (i == (int)scene->size - 1 ||
-		(int)find_row_size(arr[i + 1]) <= j
-			|| (int)find_row_size(arr[i - 1]) <= j)))
+	if (((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1'))
+		|| ((i == 0 || i == (int)scene->size - 1)
+		&& (arr[i][j] != '1')) || (arr[i][j] == '0'
+		&& (i == (int)scene->size - 1
+		|| (int)find_row_size(arr[i + 1]) <= j
+		|| (int)find_row_size(arr[i - 1]) <= j)))
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 	return (false);
 }
@@ -67,8 +67,8 @@ bool	validate_map(t_scene_infn *scene)
 	str2 = 0;
 	while (str)
 	{
-		str3 = ft_strtrim(str, " \t\n");
-		str2 = ft_ssplit(str3, "\t ");
+		str3 = ft_strtrim(str, " \t\r\v\f\n");
+		str2 = ft_ssplit(str3, " \t\r\v\f\n");
 		if (str2 && get_split_size(str2))
 		{
 			if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
@@ -99,7 +99,7 @@ bool	get_map_size(t_scene_infn *scene, char *map)
 	line = get_next_line(scene->map_fd);
 	while (line)
 	{
-		tmp = ft_ssplit(line, " \t\n");
+		tmp = ft_ssplit(line, " \t\r\v\f\n");
 		if (!flag && tmp && map_detected(tmp))
 			flag = true;
 		if (flag)

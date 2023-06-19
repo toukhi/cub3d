@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/18 14:30:48 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:26:56 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # define M_OPEN	"Map has open walls"
 # define S_INC "Scene is incomplete"
 # define ERR_L_EMP "Empty line detected"
+# define INV_COMMA "Extra / little commas found"
 
 // window attributes
 # define WIN_WIDTH 1200

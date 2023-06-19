@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 13:03:07 by abiru             #+#    #+#             */
-/*   Updated: 2022/10/02 15:47:06 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/19 17:24:50 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		len--;
 	ptr = (char *)malloc(sizeof(char) * (len - i + 1));
 	if (!ptr)
-		return (NULL);
+		return (ft_putendl_fd("ERROR", 2), perror("Malloc"), NULL);
 	while (i < len)
 		ptr[j++] = s1[i++];
 	ptr[j] = '\0';
