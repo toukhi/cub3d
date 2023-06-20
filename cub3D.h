@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/19 17:26:56 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/20 16:44:15 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct scene_infn
 	int				s_pos_x;
 	int				s_pos_y;
 	size_t			size;
+	size_t			tmp_size;
 	int				map_fd;
 	size_t			longest;
 }	t_scene_infn;

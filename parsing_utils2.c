@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:54:09 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/17 15:41:00 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/20 18:17:20 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_map(t_scene_infn *scene, int i)
 	size_t	k;
 
 	if (i == -1)
-		j = scene->size;
+		j = scene->tmp_size;
 	else
 		j = (size_t)i;
 	k = 0;
@@ -71,6 +71,7 @@ bool	check_texture(char *str, char *msg)
 	if (fd != -1)
 		close(fd);
 	fd = open(str, O_RDONLY);
+	// printf("%s\n", str);
 	if (fd == -1)
 		return (ft_putendl_fd(ERR, 2), ft_putstr_fd(msg, 2),
 				perror(""), true);
@@ -93,11 +94,11 @@ bool	search_bad_chars(char **arr, t_scene_infn *scene)
 	size_t	i;
 	size_t	j;
 
-	i = -1;
-	while (arr[++i])
+	i = 0;
+	while (arr[i])
 	{
-		j = -1;
-		while (arr[i][++j])
+		j = 0;
+		while (arr[i][j])
 		{
 			if (scene->s_orient != '0' && (arr[i][j] == 'N' || arr[i][j] == 'S'
 				|| arr[i][j] == 'E' || arr[i][j] == 'W'))
@@ -109,7 +110,9 @@ bool	search_bad_chars(char **arr, t_scene_infn *scene)
 			if (arr[i][j] == 'N' || arr[i][j] == 'S'
 				|| arr[i][j] == 'E' || arr[i][j] == 'W')
 					set_start_pos(scene, j, i, arr[i][j]);
+			j++;
 		}
+		i++;
 	}
 	if (scene->s_orient == '0')
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_ORIENT, 2), true);

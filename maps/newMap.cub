@@ -1,7 +1,7 @@
-NO ./test.xpm
-SO ./test.xpm
-WE ./test.xpm
-EA ./test.xpm
+NO ../cub3d/test.xpm
+SO ../cub3d/test.xpm
+WE ../cub3d/test.xpm
+EA ../cub3d/test.xpm
 
 
 F 	0   ,   120 , 	 +250 

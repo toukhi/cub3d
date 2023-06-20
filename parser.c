@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/19 16:40:30 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/20 17:39:20 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 bool	check_borders(t_scene_infn *scene, char **arr, int i, int j)
 {
-	if (((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1'))
+	if (((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1' && !ft_isspace(arr[i][j])))
 		|| ((i == 0 || i == (int)scene->size - 1)
-		&& (arr[i][j] != '1')) || (arr[i][j] == '0'
-		&& (i == (int)scene->size - 1
-		|| (int)find_row_size(arr[i + 1]) <= j
+		&& (arr[i][j] != '1' && !ft_isspace(arr[i][j]))) || (arr[i][j] == '0'
+		&& ((int)find_row_size(arr[i + 1]) <= j
 		|| (int)find_row_size(arr[i - 1]) <= j)))
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 	return (false);
