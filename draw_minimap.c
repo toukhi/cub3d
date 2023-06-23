@@ -7,7 +7,7 @@ int get_color(char c) {
     return (WHITE);
 }
 
-void	draw_square(t_data *data, t_vector pos, size_t size, int color)
+void	draw_square(t_data *data, t_vector pixel_pos, size_t size, int color)
 {
 	size_t i;
 	size_t j;
@@ -18,12 +18,12 @@ void	draw_square(t_data *data, t_vector pos, size_t size, int color)
 		j = 0;
 		while (j++ < size)
 		{
-			my_mlx_pixel_put(data, pos.x, pos.y, color);
-			pos.x++;
+			my_mlx_pixel_put(data, pixel_pos.x, pixel_pos.y, color);
+			pixel_pos.x++;
 		}
-		pos.x -= j - 1;
+		pixel_pos.x -= j - 1;
 		i++;
-		pos.y++;
+		pixel_pos.y++;
 	}
 }
 
@@ -49,27 +49,32 @@ void	draw_square(t_data *data, t_vector pos, size_t size, int color)
 	
 // }
 
+void	player_to_pixel(t_vector pos, t_vector *pixel) {
+	pixel->x = pos.x * BLOCK_SIZE;
+	pixel->y = pos.y * BLOCK_SIZE;
+}
+
 void	draw_minimap(t_vars *vars)
 {
 	size_t		i;
 	size_t		j;
-    t_vector	pos;
+    t_vector	pixel_pos;
 
 	i = 0;
-    pos.y = 0;
+    pixel_pos.y = 0;
 	while (i < vars->scene.size)
 	{
-        pos.x = 0;
+        pixel_pos.x = 0;
 		j = 0;
 		while (j < ft_strlen(vars->scene.minimap[i]))
 		{
-            draw_square(&vars->image, pos, 15, get_color(vars->scene.minimap[i][j]));
-            pos.x += 15;
+            draw_square(&vars->image, pixel_pos, BLOCK_SIZE, get_color(vars->scene.minimap[i][j]));
+            pixel_pos.x += BLOCK_SIZE;
             j++;
 		}
 		i++;
-        pos.y += 15;
+        pixel_pos.y += BLOCK_SIZE;
 	}
-	draw_square(&vars->image, vars->player.pos, 3, RED);
-	// draw_circle(&vars->image, (vars->player.pos.x + 1) * 15, (vars->player.pos.y + 1) * 15, RED);
+	player_to_pixel(vars->player.pos, &pixel_pos);
+	draw_square(&vars->image, pixel_pos, 3, RED);
 }
