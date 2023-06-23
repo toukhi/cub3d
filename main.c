@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/23 18:25:39 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/23 18:34:01 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ int	main(int ac, char **av)
 	init_player(&vars);
 	draw_minimap(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
-	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_key_hook(vars.win, key_up_hook, &vars);
+	mlx_hook(vars.win, 2, 0, key_down_hook, &vars);
 	mlx_hook(vars.win, RED_CROSS, 0, quit, &vars);
 	mlx_loop(vars.mlx);
 }

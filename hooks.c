@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/23 18:23:18 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/23 18:38:59 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@ void	move_player(t_vars *vars, int key)
 		vars->player.pos.x += 0.1;
 }
 
-int	key_hook(int key, t_vars *vars)
+int	key_up_hook(int key, t_vars *vars)
 {
 	printf("Key code: %d\n", key);
 	if (key == ESC)
 		quit(vars);
+	return (0);
+}
+
+int	key_down_hook(int key, t_vars *vars)
+{
+	printf("Key code: %d\n", key);
 	if (key == W || key == A || key == S || key == D)
 	{
 		move_player(vars, key);

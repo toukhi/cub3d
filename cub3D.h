@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/23 18:22:27 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/23 18:32:55 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ void	init_window(t_vars *vars);
 void	redraw_image(t_vars *vars);
 int		quit(t_vars *vars);
 
-int		key_hook(int keycode, t_vars *vars);
+int		key_up_hook(int keycode, t_vars *vars);
+int		key_down_hook(int keycode, t_vars *vars);
 void	draw_minimap(t_vars *vars);
 
 #endif
