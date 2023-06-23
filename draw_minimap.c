@@ -60,6 +60,9 @@ void	draw_minimap(t_vars *vars)
 	size_t		j;
     t_vector	pixel_pos;
 
+	printf("player coordinates: x:%f, y:%f\n", vars->player.pos.x, vars->player.pos.y);
+	printf("player direction: x:%f, y:%f\n", vars->player.dir.x, vars->player.dir.y);
+	
 	i = 0;
     pixel_pos.y = 0;
 	while (i < vars->scene.size)

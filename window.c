@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/15 19:19:04 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:18:06 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ void	init_window(t_vars *vars)
 	vars->image.addr = mlx_get_data_addr(vars->image.img,
 			&vars->image.bits_per_pixel, &vars->image.line_length,
 			&vars->image.endian);
+}
+
+void	redraw_image(t_vars *vars)
+{
+	mlx_destroy_image(vars->mlx, vars->image.img);
+	vars->image.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
+	vars->image.addr = mlx_get_data_addr(vars->image.img,
+			&vars->image.bits_per_pixel, &vars->image.line_length,
+			&vars->image.endian);
+	draw_minimap(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->image.img, 0, 0);
 }
 
 int	quit(t_vars *vars)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/20 16:44:15 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/23 18:22:27 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@
 # define INV_COMMA "Extra / little commas found"
 
 // window attributes
-# define WIN_WIDTH 1200
-# define WIN_HEIGHT 800
+# define WIN_WIDTH 1100
+# define WIN_HEIGHT 700
 # define RED_CROSS 17
+# define BLOCK_SIZE 15
 
 // key values
 # define ESC 53
-# define W 53
+# define W 13
 # define A 0
 # define S 1
 # define D 2
@@ -169,6 +170,7 @@ bool	create_minimap(t_scene_infn *scene);
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
+void	redraw_image(t_vars *vars);
 int		quit(t_vars *vars);
 
 int		key_hook(int keycode, t_vars *vars);

@@ -3,25 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/15 20:16:47 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:23:18 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	key_hook(int keycode, t_vars *vars)
+void	move_player(t_vars *vars, int key)
 {
-	printf("Key code: %d\n", keycode);
-	if (keycode == ESC)
+	if (key == W)
+		vars->player.pos.y -= 0.1;
+	if (key == A)
+		vars->player.pos.x -= 0.1;
+	if (key == S)
+		vars->player.pos.y += 0.1;
+	if (key == D)
+		vars->player.pos.x += 0.1;
+}
+
+int	key_hook(int key, t_vars *vars)
+{
+	printf("Key code: %d\n", key);
+	if (key == ESC)
 		quit(vars);
-	if (keycode == W || keycode == A || keycode == S || keycode == D)
+	if (key == W || key == A || key == S || key == D)
 	{
-		//move character
+		move_player(vars, key);
+		redraw_image(vars);
 	}
-	if (keycode == UP_ARROW || keycode == LEFT_ARROW || keycode == DOWN_ARROW || keycode == RIGHT_ARROW)
+	if (key == UP_ARROW || key == LEFT_ARROW || key == DOWN_ARROW || key == RIGHT_ARROW)
 	{
 		//rotate character
 	}

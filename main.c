@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/19 19:11:56 by abiru            ###   ########.fr       */
+/*   Updated: 2023/06/23 18:25:39 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	cleanup(t_scene_infn *scene)
 
 void	init_player(t_vars *vars)
 {
-	vars->player.pos.x = vars->scene.s_pos_x - 0.5;
-	vars->player.pos.y = vars->scene.s_pos_y - 0.5;
+	vars->player.pos.x = vars->scene.s_pos_x + 0.5;
+	vars->player.pos.y = vars->scene.s_pos_y + 0.5;
 	vars->player.dir.x = 0;
 	vars->player.dir.y = 0;
 	vars->player.plane.x = 0;
@@ -101,7 +101,6 @@ int	main(int ac, char **av)
 			ft_putendl_fd(S_INC, 2), 1);
 	init_window(&vars);
 	init_player(&vars);
-	printf("player coordinates: x:%f, y:%f\n", vars.player.pos.x, vars.player.pos.y);
 	draw_minimap(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
