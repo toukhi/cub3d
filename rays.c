@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/26 14:07:13 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/06/26 14:24:17 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,12 @@ void	init_rays(t_vars *vars)
 				current_ray.hit = 1;
 			}
 		}
-		printf("For ray %d: deltaDX = %f, deltaDY = %f, sideDX = %f, sideDY = %f\n", ray_num, current_ray.deltaDist.x, current_ray.deltaDist.y, current_ray.sideDist.x, current_ray.sideDist.y);
+		// printf("For ray %d: deltaDX = %f, deltaDY = %f, sideDX = %f, sideDY = %f\n", ray_num, current_ray.deltaDist.x, current_ray.deltaDist.y, current_ray.sideDist.x, current_ray.sideDist.y);
+		if (current_ray.side == 0)
+			current_ray.wallDist = (current_ray.sideDist.x - current_ray.deltaDist.x);
+		else
+			current_ray.wallDist = (current_ray.sideDist.y - current_ray.deltaDist.y);
+		printf("For ray %d: distance to wall is: %f\n\n", ray_num, current_ray.wallDist);
 	}
 	// printf("longest: %d\n", w);
 }
