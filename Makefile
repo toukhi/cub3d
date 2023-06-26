@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+         #
+#    By: youssef <youssef@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 16:03:13 by abiru             #+#    #+#              #
-#    Updated: 2023/06/19 16:26:31 by abiru            ###   ########.fr        #
+#    Updated: 2023/06/26 12:48:25 by youssef          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3D
 
 SRCS = main.c ft_ssplit.c parser.c parsing_utils.c parsing_utils2.c \
 		texture_parser.c color_parser.c map_parser.c window.c hooks.c \
-		draw_minimap.c parse_minimap.c
+		draw_minimap.c parse_minimap.c rays.c
 
 CC = cc -g3
 

@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/23 18:32:55 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/26 12:48:00 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,20 @@ typedef struct s_vector
 	double	y;
 }	t_vector;
 
+typedef struct s_ray
+{
+	t_vector	dir;
+	t_vector	sideDist;
+	t_vector	deltaDist;
+	double		wallDist;
+	int			mapX;
+	int			mapY;
+	t_vector	step;
+	int			hit;
+	int			side;
+}	t_ray;
+
+
 typedef struct s_player
 {
 	t_vector	pos;
@@ -141,7 +155,7 @@ typedef struct s_vars
 	t_data			image;
 	t_scene_infn	scene;
 	t_player		player;
-	// t_map			map;
+	t_ray			*rays;
 }				t_vars;
 
 // parsing utils
@@ -170,6 +184,7 @@ bool	create_minimap(t_scene_infn *scene);
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
+void	init_rays(t_vars *vars);
 void	redraw_image(t_vars *vars);
 int		quit(t_vars *vars);
 
