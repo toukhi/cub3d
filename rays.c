@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/27 17:28:59 by youssef          ###   ########.fr       */
+/*   Updated: 2023/06/27 17:38:19 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void    dda(t_ray *ray_p, char **map, int ray_num)
 		{
 			(*ray_p).sideDist.y += (*ray_p).deltaDist.y;
 			(*ray_p).mapY += (*ray_p).step.y;
-			(*ray_p).side = 0;
+			(*ray_p).side = 1;
 		}
 		//Check if ray has hit a wall
 		// printf("current content: %c\n", map[(*ray_p).mapY][(*ray_p).mapX]);
