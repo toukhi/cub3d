@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/26 12:46:49 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/01 14:13:06 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,13 @@ void	init_player(t_vars *vars)
 	}
 }
 
+void	init_rays(t_vars *vars)
+{
+	vars->rays = malloc((WIN_WIDTH + 1) * sizeof(t_ray));
+	if (!vars->rays)
+		quit(vars);
+}
+
 int	main(int ac, char **av)
 {
 	t_vars	vars;
@@ -102,6 +109,7 @@ int	main(int ac, char **av)
 	init_window(&vars);
 	init_player(&vars);
 	init_rays(&vars);
+	draw_screen(&vars);
 	draw_minimap(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_up_hook, &vars);

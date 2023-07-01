@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/24 15:04:06 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/01 14:12:46 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	redraw_image(t_vars *vars)
 	vars->image.addr = mlx_get_data_addr(vars->image.img,
 			&vars->image.bits_per_pixel, &vars->image.line_length,
 			&vars->image.endian);
+	draw_screen(vars);
 	draw_minimap(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->image.img, 0, 0);
 }

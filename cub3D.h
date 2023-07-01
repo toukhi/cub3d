@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/26 12:48:00 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/01 14:12:30 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,12 +184,12 @@ bool	create_minimap(t_scene_infn *scene);
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
-void	init_rays(t_vars *vars);
 void	redraw_image(t_vars *vars);
 int		quit(t_vars *vars);
 
 int		key_up_hook(int keycode, t_vars *vars);
 int		key_down_hook(int keycode, t_vars *vars);
 void	draw_minimap(t_vars *vars);
+void	draw_screen(t_vars *vars);
 
 #endif

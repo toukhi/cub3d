@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/01 14:06:53 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/01 14:12:28 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,25 +87,25 @@ void    draw_ver_line(t_data *data, int x, int y1, int y2, int color)
     }
 }
 
-void	init_rays(t_vars *vars)
+void	draw_screen(t_vars *vars)
 {
 	int		ray_num;
-	int		w;
+	// int		w;
 	double	cameraX;
 	t_ray	*ray_p;
 
-	w = WIN_WIDTH;  //vars->scene.longest;
-	vars->rays = malloc((w + 1) * sizeof(t_ray));
-	if (!vars->rays)
-		quit(vars);
+	// w = WIN_WIDTH;  //vars->scene.longest;
+	// vars->rays = malloc((w + 1) * sizeof(t_ray));
+	// if (!vars->rays)
+	// 	quit(vars);
 	ray_num = -1;
-	while (++ray_num <= w)
+	while (++ray_num <= WIN_WIDTH)
 	{
 		ray_p = &(vars->rays[ray_num]);
 		(*ray_p).mapX = (int) vars->player.pos.x;
 		(*ray_p).mapY = (int) vars->player.pos.y;
 		// printf("mapX: %d, mapY: %d\n", (*ray_p).mapX, (*ray_p).mapY);
-		cameraX = 2 * ray_num / (double) w - 1;
+		cameraX = 2 * ray_num / (double) WIN_WIDTH - 1;
 		(*ray_p).dir.x = vars->player.dir.x + vars->player.plane.x * cameraX;
 		(*ray_p).dir.y = vars->player.dir.y + vars->player.plane.y * cameraX;
 		//need to check if rayDir is 0!!!
