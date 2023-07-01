@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/06/27 17:38:19 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/01 14:06:53 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,26 @@ void    dda(t_ray *ray_p, char **map, int ray_num)
 	}
 }
 
+//probably won't need this func
+void    draw_ver_line(t_data *data, int x, int y1, int y2, int color)
+{
+    int y_start;
+    int y_end;
+
+    y_start = y1;
+    y_end = y2;
+    if (y2 < y1)
+    {
+        y_start = y2;
+        y_end = y1;
+    }
+    while (y_start <= y_end)
+    {
+        my_mlx_pixel_put(data, x, y_start, color);
+        y_start++;
+    }
+}
+
 void	init_rays(t_vars *vars)
 {
 	int		ray_num;
@@ -74,7 +94,7 @@ void	init_rays(t_vars *vars)
 	double	cameraX;
 	t_ray	*ray_p;
 
-	w = vars->scene.longest;
+	w = WIN_WIDTH;  //vars->scene.longest;
 	vars->rays = malloc((w + 1) * sizeof(t_ray));
 	if (!vars->rays)
 		quit(vars);
@@ -101,7 +121,20 @@ void	init_rays(t_vars *vars)
 			(*ray_p).wallDist = ((*ray_p).sideDist.x - (*ray_p).deltaDist.x);
 		else
 			(*ray_p).wallDist = ((*ray_p).sideDist.y - (*ray_p).deltaDist.y);
-		printf("For ray %d: distance to wall is: %f\n\n", ray_num, (*ray_p).wallDist);
-	}
-	// printf("longest: %d\n", w);
+        //Calculate height of line to draw on screen
+        int lineHeight = (int)(WIN_HEIGHT / (*ray_p).wallDist);
+		printf("For ray %d: distance to wall is: %f and lineHeight is %d\n\n", ray_num, (*ray_p).wallDist, lineHeight);
+
+        //calculate lowest and highest pixel to fill in current stripe
+        int drawStart = -lineHeight / 2 + WIN_HEIGHT / 2;
+        if(drawStart < 0)
+            drawStart = 0;
+        int drawEnd = lineHeight / 2 + WIN_HEIGHT / 2;
+        if(drawEnd >= WIN_HEIGHT)
+            drawEnd = WIN_HEIGHT - 1;
+        if ((*ray_p).side == 1)
+            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, RED);
+        else
+            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, GRAY);
+    }
 }
