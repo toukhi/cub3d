@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/02 16:17:45 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/02 17:15:12 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 void	move_player(t_vars *vars, int key)
 {
 	if (key == W)
-		vars->player.pos.y -= 0.1;
+	{
+		vars->player.pos.x += 0.2 * vars->player.dir.x;
+		vars->player.pos.y += 0.2 * vars->player.dir.y;
+	}
 	if (key == A)
 		vars->player.pos.x -= 0.1;
 	if (key == S)
-		vars->player.pos.y += 0.1;
+	{
+		vars->player.pos.x -= 0.2 * vars->player.dir.x;
+		vars->player.pos.y -= 0.2 * vars->player.dir.y;
+	}
 	if (key == D)
 		vars->player.pos.x += 0.1;
 }
@@ -61,7 +67,7 @@ int	key_down_hook(int key, t_vars *vars)
 	if (key == UP_ARROW || key == LEFT_ARROW || key == DOWN_ARROW || key == RIGHT_ARROW)
 	{
 		rotate_player(&(vars->player.dir), &(vars->player.plane), key);
-		// printf("direction vector: x: %f, y:%f\n", vars->player.dir.x, vars->player.dir.y);
+		printf("direction vector: x: %f, y:%f\n", vars->player.dir.x, vars->player.dir.y);
 		redraw_image(vars);
 	}
 	return (0);
