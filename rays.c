@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/01 14:12:28 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/02 13:21:07 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void    set_sideDist(t_ray *ray_p, t_player player)
 	}
 }
 
-void    dda(t_ray *ray_p, char **map, int ray_num)
+void    dda(t_ray *ray_p, char **map)//, int ray_num)
 {
     while ((*ray_p).hit == 0)
 	{
-		printf("For ray %d: deltaDX = %f, deltaDY = %f, sideDX = %f, sideDY = %f\n", ray_num, (*ray_p).deltaDist.x, (*ray_p).deltaDist.y, (*ray_p).sideDist.x, (*ray_p).sideDist.y);
+		// printf("For ray %d: deltaDX = %f, deltaDY = %f, sideDX = %f, sideDY = %f\n", ray_num, (*ray_p).deltaDist.x, (*ray_p).deltaDist.y, (*ray_p).sideDist.x, (*ray_p).sideDist.y);
 		//jump to next map square, either in x-direction, or in y-direction
 		if ((*ray_p).sideDist.x < (*ray_p).sideDist.y)
 		{
@@ -61,7 +61,7 @@ void    dda(t_ray *ray_p, char **map, int ray_num)
 		// printf("current content: %c\n", map[(*ray_p).mapY][(*ray_p).mapX]);
 		if (map[(*ray_p).mapY][(*ray_p).mapX] > '0')
 		{
-			printf("mapX: %d, mapY: %d\n", (*ray_p).mapX, (*ray_p).mapY);
+			// printf("mapX: %d, mapY: %d\n", (*ray_p).mapX, (*ray_p).mapY);
 			(*ray_p).hit = 1;
 		}
 	}
@@ -115,7 +115,7 @@ void	draw_screen(t_vars *vars)
 		// printf("For ray %d: dirX = %f, dirY = %f\n", ray_num, (*ray_p).dir.x, (*ray_p).dir.y);
 		(*ray_p).hit = 0;
 		set_sideDist(ray_p, vars->player);
-		dda(ray_p, vars->scene.content, ray_num);
+		dda(ray_p, vars->scene.content);//, ray_num);
 		// printf("For ray %d: deltaDX = %f, deltaDY = %f, sideDX = %f, sideDY = %f\n", ray_num, (*ray_p).deltaDist.x, (*ray_p).deltaDist.y, (*ray_p).sideDist.x, (*ray_p).sideDist.y);
 		if ((*ray_p).side == 0)
 			(*ray_p).wallDist = ((*ray_p).sideDist.x - (*ray_p).deltaDist.x);
@@ -123,7 +123,7 @@ void	draw_screen(t_vars *vars)
 			(*ray_p).wallDist = ((*ray_p).sideDist.y - (*ray_p).deltaDist.y);
         //Calculate height of line to draw on screen
         int lineHeight = (int)(WIN_HEIGHT / (*ray_p).wallDist);
-		printf("For ray %d: distance to wall is: %f and lineHeight is %d\n\n", ray_num, (*ray_p).wallDist, lineHeight);
+		// printf("For ray %d: distance to wall is: %f and lineHeight is %d\n\n", ray_num, (*ray_p).wallDist, lineHeight);
 
         //calculate lowest and highest pixel to fill in current stripe
         int drawStart = -lineHeight / 2 + WIN_HEIGHT / 2;

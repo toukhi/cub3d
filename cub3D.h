@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/01 14:12:30 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/02 16:57:51 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@
 # define GRAY 0x00808080
 # define WHITE 0x00FFFFFF
 # define RED 0x00FF0000
+
+//player attributes
+# define TURN_ANGLE 0.0872665 // 5 deg in rad
 
 typedef struct scene_infn
 {
