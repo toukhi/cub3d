@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youssef <youssef@student.42.fr>            +#+  +:+       +#+         #
+#    By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 16:03:13 by abiru             #+#    #+#              #
-#    Updated: 2023/06/26 12:48:25 by youssef          ###   ########.fr        #
+#    Updated: 2023/07/03 18:31:41 by yel-touk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
+
+HDRS = cub3D.h
 
 SRCS = main.c ft_ssplit.c parser.c parsing_utils.c parsing_utils2.c \
 		texture_parser.c color_parser.c map_parser.c window.c hooks.c \
@@ -32,7 +34,7 @@ MLX		= ./mlx/libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HDRS)
 	@make -C $(LIBFT_DIR)
 	@make -C ${MLX_DIR}
 	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(LIBFT) -o $@
