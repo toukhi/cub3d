@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/02 16:57:51 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:49:01 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,13 +134,17 @@ typedef struct s_player
 	t_vector	plane;
 }	t_player;
 
-// typedef struct s_map
-// {
-// 	size_t		width;
-// 	size_t		height;
-// 	t_player	player;
-// }	t_map;
-
+typedef struct s_keys
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	left;
+	bool	down;
+	bool	right;
+	bool	up;
+}	t_keys;
 
 typedef struct s_data
 {
@@ -159,6 +163,7 @@ typedef struct s_vars
 	t_scene_infn	scene;
 	t_player		player;
 	t_ray			*rays;
+	t_keys			keys;
 }				t_vars;
 
 // parsing utils
