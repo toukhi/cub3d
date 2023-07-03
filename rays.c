@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/02 13:21:07 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:44:27 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	draw_screen(t_vars *vars)
 	// if (!vars->rays)
 	// 	quit(vars);
 	ray_num = -1;
-	while (++ray_num <= WIN_WIDTH)
+	while (++ray_num < WIN_WIDTH)
 	{
 		ray_p = &(vars->rays[ray_num]);
 		(*ray_p).mapX = (int) vars->player.pos.x;
