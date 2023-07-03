@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/03 17:49:01 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:46:31 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@
 # define RED 0x00FF0000
 
 //player attributes
-# define TURN_ANGLE 0.0872665 // 5 deg in rad
+# define TURN_ANGLE 0.0174533 // 1.0 deg in rad
+# define MOVE_SPEED 0.02
 
 typedef struct scene_infn
 {
@@ -199,5 +200,7 @@ int		key_up_hook(int keycode, t_vars *vars);
 int		key_down_hook(int keycode, t_vars *vars);
 void	draw_minimap(t_vars *vars);
 void	draw_screen(t_vars *vars);
+
+int		update_scene(t_vars *vars);
 
 #endif

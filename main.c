@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/03 18:04:34 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/03 21:46:40 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(vars.win, key_up_hook, &vars);
 	mlx_hook(vars.win, 2, 0, key_down_hook, &vars);
 	mlx_hook(vars.win, RED_CROSS, 0, quit, &vars);
+	mlx_loop_hook(vars.mlx, update_scene, &vars);
 	mlx_loop(vars.mlx);
 }
