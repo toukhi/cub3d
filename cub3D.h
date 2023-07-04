@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/03 21:46:31 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/04 19:17:55 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@
 # define LEFT_ARROW 123
 # define DOWN_ARROW 125
 # define RIGHT_ARROW 124
+# define R 15
 
 // colors
 # define CAMEL 0x00C19A6B
@@ -88,7 +89,9 @@
 
 //player attributes
 # define TURN_ANGLE 0.0174533 // 1.0 deg in rad
-# define MOVE_SPEED 0.02
+# define WALK_SPEED 0.02
+# define RUN_SPEED 0.05
+// # define SAFETY_DIST 0.1
 
 typedef struct scene_infn
 {
@@ -145,6 +148,7 @@ typedef struct s_keys
 	bool	down;
 	bool	right;
 	bool	up;
+	bool	r;
 }	t_keys;
 
 typedef struct s_data

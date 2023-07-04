@@ -3,28 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/03 21:46:14 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/04 19:17:45 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+bool	is_collision(t_vars *vars, double move_speed, int key)
+{
+	int	x;
+	int	y;
+
+	if (key == W)
+	{
+		x = vars->player.pos.x + move_speed * vars->player.dir.x;
+		y = vars->player.pos.y + move_speed * vars->player.dir.y;
+	}
+	if (key == S)
+	{
+		x = vars->player.pos.x - move_speed * vars->player.dir.x;
+		y = vars->player.pos.y - move_speed * vars->player.dir.y;
+	}
+	// if (key == A)
+	// {
+		
+	// }
+	// if (key == D)
+	// {
+		
+	// }
+	printf("minimap next step for x: %d, y: %d, value: %c\n", x, y, vars->scene.minimap[y][x]);
+	if (vars->scene.minimap[y][x] != '1')
+		return (false);
+	return (true);
+}
+
 void	move_player(t_vars *vars)//, int key)
 {
-	if (vars->keys.w)
+	double move_speed;
+
+	if (vars->keys.r)
+		move_speed = RUN_SPEED;
+	else
+		move_speed = WALK_SPEED;
+	if (vars->keys.w && !is_collision(vars, move_speed, W))
 	{
-		vars->player.pos.x += MOVE_SPEED * vars->player.dir.x;
-		vars->player.pos.y += MOVE_SPEED * vars->player.dir.y;
+		vars->player.pos.x += move_speed * vars->player.dir.x;
+		vars->player.pos.y += move_speed * vars->player.dir.y;
 	}
 	if (vars->keys.a)
 		vars->player.pos.x -= 0.1;
-	if (vars->keys.s)
+	if (vars->keys.s && !is_collision(vars, move_speed, S))
 	{
-		vars->player.pos.x -= MOVE_SPEED * vars->player.dir.x;
-		vars->player.pos.y -= MOVE_SPEED * vars->player.dir.y;
+		vars->player.pos.x -= move_speed * vars->player.dir.x;
+		vars->player.pos.y -= move_speed * vars->player.dir.y;
 	}
 	if (vars->keys.d)
 		vars->player.pos.x += 0.1;
@@ -66,6 +101,8 @@ void	set_keys(int key, t_keys *keys, bool status)
 		keys->down = status;
 	if (key == RIGHT_ARROW)
 		keys->right = status;
+	if (key == R)
+		keys->r = status;
 }
 
 int	key_up_hook(int key, t_vars *vars)
