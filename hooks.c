@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/05 13:24:12 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:28:10 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ bool	is_collision(t_vars *vars, double move_speed, int key)
 		x = vars->player.pos.x - move_speed * vars->player.dir.x;
 		y = vars->player.pos.y - move_speed * vars->player.dir.y;
 	}
-	// if (key == A)
-	// {
-		
-	// }
-	// if (key == D)
-	// {
-		
-	// }
+	if (key == A)
+	{
+		x = vars->player.pos.x - move_speed * vars->player.plane.x;
+		y = vars->player.pos.y - move_speed * vars->player.plane.y;
+	}
+	if (key == D)
+	{
+		x = vars->player.pos.x + move_speed * vars->player.plane.x;
+		y = vars->player.pos.y + move_speed * vars->player.plane.y;
+	}
 	printf("minimap next step for x: %d, y: %d, value: %c\n", x, y, vars->scene.minimap[y][x]);
 	if (vars->scene.minimap[y][x] != '1')
 		return (false);
@@ -54,18 +56,17 @@ void	move_player(t_vars *vars)//, int key)
 		vars->player.pos.x += move_speed * vars->player.dir.x;
 		vars->player.pos.y += move_speed * vars->player.dir.y;
 	}
-	if (vars->keys.a)
+	if (vars->keys.a && !is_collision(vars, move_speed, A))
 	{
 		vars->player.pos.x -= move_speed * vars->player.plane.x;
-		vars->player.pos.y -= move_speed * vars->player.plane.y;
-		
+		vars->player.pos.y -= move_speed * vars->player.plane.y;	
 	}
 	if (vars->keys.s && !is_collision(vars, move_speed, S))
 	{
 		vars->player.pos.x -= move_speed * vars->player.dir.x;
 		vars->player.pos.y -= move_speed * vars->player.dir.y;
 	}
-	if (vars->keys.d)
+	if (vars->keys.d && !is_collision(vars, move_speed, D))
 	{
 		vars->player.pos.x += move_speed * vars->player.plane.x;
 		vars->player.pos.y += move_speed * vars->player.plane.y;
