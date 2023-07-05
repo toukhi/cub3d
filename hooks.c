@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/04 19:17:45 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:24:12 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,21 @@ void	move_player(t_vars *vars)//, int key)
 		vars->player.pos.y += move_speed * vars->player.dir.y;
 	}
 	if (vars->keys.a)
-		vars->player.pos.x -= 0.1;
+	{
+		vars->player.pos.x -= move_speed * vars->player.plane.x;
+		vars->player.pos.y -= move_speed * vars->player.plane.y;
+		
+	}
 	if (vars->keys.s && !is_collision(vars, move_speed, S))
 	{
 		vars->player.pos.x -= move_speed * vars->player.dir.x;
 		vars->player.pos.y -= move_speed * vars->player.dir.y;
 	}
 	if (vars->keys.d)
-		vars->player.pos.x += 0.1;
+	{
+		vars->player.pos.x += move_speed * vars->player.plane.x;
+		vars->player.pos.y += move_speed * vars->player.plane.y;
+	}
 }
 
 void	rotate_player(t_vector *dir, t_vector *plane, t_keys *keys)//, int key)
