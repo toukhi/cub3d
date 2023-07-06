@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/05 13:28:10 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:34:51 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	is_collision(t_vars *vars, double move_speed, int key)
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 
 	if (key == W)
 	{
@@ -37,8 +37,18 @@ bool	is_collision(t_vars *vars, double move_speed, int key)
 		x = vars->player.pos.x + move_speed * vars->player.plane.x;
 		y = vars->player.pos.y + move_speed * vars->player.plane.y;
 	}
-	printf("minimap next step for x: %d, y: %d, value: %c\n", x, y, vars->scene.minimap[y][x]);
-	if (vars->scene.minimap[y][x] != '1')
+	if ((key == W && vars->player.dir.x < 0) || (key == S && vars->player.dir.x >= 0)
+			|| (key == A && vars->player.plane.x >= 0) || (key == D && vars->player.plane.x < 0))
+		x -= SAFETY_DIST;
+	else
+		x += SAFETY_DIST;
+	if ((key == W && vars->player.dir.y < 0) || (key == S && vars->player.dir.y >= 0)
+			|| (key == A && vars->player.plane.y >= 0) || (key == D && vars->player.plane.y < 0))
+		y -= SAFETY_DIST;
+	else
+		y += SAFETY_DIST;
+	printf("minimap next step for x: %f, y: %f, value: %c\n", x, y, vars->scene.minimap[(int)y][(int)x]);
+	if (vars->scene.minimap[(int)y][(int)x] != '1')
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/04 19:17:55 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:20:57 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@
 # define TURN_ANGLE 0.0174533 // 1.0 deg in rad
 # define WALK_SPEED 0.02
 # define RUN_SPEED 0.05
-// # define SAFETY_DIST 0.1
+# define SAFETY_DIST 0.1
 
 typedef struct scene_infn
 {
