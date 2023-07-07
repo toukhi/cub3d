@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/07 17:48:37 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/07 17:51:40 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	move_player(t_vars *vars)//, int key)
 {
 	double move_speed;
 
-	if (vars->keys.r)
+	if (vars->keys.run)
 		move_speed = RUN_SPEED;
 	else
 		move_speed = WALK_SPEED;
@@ -120,7 +120,7 @@ void	set_keys(int key, t_keys *keys, bool status)
 	if (key == RIGHT_ARROW)
 		keys->right = status;
 	if (key == R)
-		keys->r = status;
+		keys->run = status;
 }
 
 int	key_up_hook(int key, t_vars *vars)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/06 13:20:57 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:51:23 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@
 # define DOWN_ARROW 125
 # define RIGHT_ARROW 124
 # define R 15
+# define X 7
 
 // colors
 # define CAMEL 0x00C19A6B
@@ -148,7 +149,8 @@ typedef struct s_keys
 	bool	down;
 	bool	right;
 	bool	up;
-	bool	r;
+	bool	run;
+	bool	mouse;
 }	t_keys;
 
 typedef struct s_data
@@ -169,6 +171,7 @@ typedef struct s_vars
 	t_player		player;
 	t_ray			*rays;
 	t_keys			keys;
+	t_vector		mouse_pos;
 }				t_vars;
 
 // parsing utils
@@ -202,6 +205,7 @@ int		quit(t_vars *vars);
 
 int		key_up_hook(int keycode, t_vars *vars);
 int		key_down_hook(int keycode, t_vars *vars);
+int		mouse_move_hook(int x, int y, t_vars *vars);
 void	draw_minimap(t_vars *vars);
 void	draw_screen(t_vars *vars);
 
