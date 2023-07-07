@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/05 14:23:06 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:52:55 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ void    draw_ver_line(t_data *data, int x, int y1, int y2, int color)
 
     y_start = y1;
     y_end = y2;
-    if (y2 < y1)
-    {
-        y_start = y2;
-        y_end = y1;
-    }
+    // if (y2 < y1)
+    // {
+    //     y_start = y2;
+    //     y_end = y1;
+	// 	printf("enters here (draw_ver_line)\n");
+    // }
     while (y_start <= y_end)
     {
         my_mlx_pixel_put(data, x, y_start, color);
@@ -129,9 +130,13 @@ void	draw_screen(t_vars *vars)
         int drawStart = -lineHeight / 2 + WIN_HEIGHT / 2;
         if(drawStart < 0)
             drawStart = 0;
+		if (drawStart > 0)
+			draw_ver_line(&vars->image, ray_num, 0, drawStart - 1, vars->scene.cc);
         int drawEnd = lineHeight / 2 + WIN_HEIGHT / 2;
         if(drawEnd >= WIN_HEIGHT)
             drawEnd = WIN_HEIGHT - 1;
+		if (drawEnd < WIN_HEIGHT - 1)
+			draw_ver_line(&vars->image, ray_num, drawEnd + 1, WIN_HEIGHT - 1, vars->scene.fc);
         if ((*ray_p).side == 1)
             draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, RED);
         else
