@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:53:15 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/19 17:37:58 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/07 16:07:57 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_longest_line(t_scene_infn *scene)
 
 static int	find_clr(int a, int b, int c)
 {
-	return (a << 24 | b << 16 | c << 8);
+	return (a << 16 | b << 8 | c);
 }
 
 static bool	get_ind_clrs(char **str, char **tmp, t_scene_infn *scene)
