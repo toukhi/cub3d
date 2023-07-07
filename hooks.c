@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/07 17:51:40 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/07 18:26:32 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ int	key_up_hook(int key, t_vars *vars)
 		quit(vars);
 	if (key == X)
 		vars->keys.mouse = !vars->keys.mouse;
+	if (key == M)
+		vars->keys.map = !vars->keys.map;
 	set_keys(key, &(vars->keys), false);
 	return (0);
 }

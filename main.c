@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/03 21:46:40 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/07 18:31:18 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	init_keys(t_vars *vars)
 	vars->keys.left = false;
 	vars->keys.down = false;
 	vars->keys.right = false;
+	vars->keys.run = false;
+	vars->keys.mouse = false;
 }
 
 int	main(int ac, char **av)
@@ -123,11 +125,11 @@ int	main(int ac, char **av)
 	init_rays(&vars);
 	init_keys(&vars);
 	draw_screen(&vars);
-	draw_minimap(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_up_hook, &vars);
 	mlx_hook(vars.win, 2, 0, key_down_hook, &vars);
 	mlx_hook(vars.win, RED_CROSS, 0, quit, &vars);
+	mlx_hook(vars.win, 6, 0, mouse_move_hook, &vars);
 	mlx_loop_hook(vars.mlx, update_scene, &vars);
 	mlx_loop(vars.mlx);
 }

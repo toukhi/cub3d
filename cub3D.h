@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/07 17:51:23 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/07 18:22:36 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@
 # define RIGHT_ARROW 124
 # define R 15
 # define X 7
+# define M 46
 
 // colors
 # define CAMEL 0x00C19A6B
@@ -151,6 +152,7 @@ typedef struct s_keys
 	bool	up;
 	bool	run;
 	bool	mouse;
+	bool	map;
 }	t_keys;
 
 typedef struct s_data
