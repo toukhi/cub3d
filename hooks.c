@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/06 13:34:51 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:48:37 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	is_collision(t_vars *vars, double move_speed, int key)
 		y -= SAFETY_DIST;
 	else
 		y += SAFETY_DIST;
-	printf("minimap next step for x: %f, y: %f, value: %c\n", x, y, vars->scene.minimap[(int)y][(int)x]);
+	// printf("minimap next step for x: %f, y: %f, value: %c\n", x, y, vars->scene.minimap[(int)y][(int)x]);
 	if (vars->scene.minimap[(int)y][(int)x] != '1')
 		return (false);
 	return (true);
@@ -128,6 +128,8 @@ int	key_up_hook(int key, t_vars *vars)
 	printf("Key code: %d\n", key);
 	if (key == ESC)
 		quit(vars);
+	if (key == X)
+		vars->keys.mouse = !vars->keys.mouse;
 	set_keys(key, &(vars->keys), false);
 	return (0);
 }
@@ -135,18 +137,37 @@ int	key_up_hook(int key, t_vars *vars)
 int	key_down_hook(int key, t_vars *vars)
 {
 	set_keys(key, &(vars->keys), true);
-	// printf("Key code: %d\n", key);
-	// if (key == W || key == A || key == S || key == D)
-	// {
-	// 	move_player(vars, key);
-	// 	redraw_image(vars);
-	// }
-	// if (key == UP_ARROW || key == LEFT_ARROW || key == DOWN_ARROW || key == RIGHT_ARROW)
-	// {
-	// 	rotate_player(&(vars->player.dir), &(vars->player.plane), key);
-	// 	printf("direction vector: x: %f, y:%f\n", vars->player.dir.x, vars->player.dir.y);
-	// 	redraw_image(vars);
-	// }
+	return (0);
+}
+
+int	mouse_move_hook(int x, int y, t_vars *vars)
+{
+	if (vars->keys.mouse)
+	{
+		if (x < WIN_WIDTH / 3 && x >= 0)
+			set_keys(LEFT_ARROW, &(vars->keys), true);
+		else if (x > WIN_WIDTH / 3 * 2 && x <= WIN_WIDTH)
+			set_keys(RIGHT_ARROW, &(vars->keys), true);
+		else
+		{
+			set_keys(LEFT_ARROW, &(vars->keys), false);
+			set_keys(RIGHT_ARROW, &(vars->keys), false);
+			if (vars->mouse_pos.x < x)
+			{
+				set_keys(RIGHT_ARROW, &(vars->keys), true);
+				rotate_player(&(vars->player.dir), &(vars->player.plane), &(vars->keys));
+				set_keys(RIGHT_ARROW, &(vars->keys), false);
+			}
+			if (vars->mouse_pos.x > x)
+			{
+				set_keys(LEFT_ARROW, &(vars->keys), true);
+				rotate_player(&(vars->player.dir), &(vars->player.plane), &(vars->keys));
+				set_keys(LEFT_ARROW, &(vars->keys), false);
+			}
+		}
+	}
+	vars->mouse_pos.x = x;
+	vars->mouse_pos.y = y;
 	return (0);
 }
 
