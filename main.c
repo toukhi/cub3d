@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/07 18:31:18 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/08 15:02:05 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	main(int ac, char **av)
 	init_struct(&vars.scene);
 	if (!get_map_size(&vars.scene, av[1]))
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd("Invalid map", 2), 1);
-	if (!validate_map(&vars.scene))
+	if (!validate_map(&vars))
 	{
 		close(vars.scene.map_fd);
 		return (cleanup(&vars.scene), 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/08 12:40:55 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/08 15:02:30 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,21 @@
 # define RUN_SPEED 0.05
 # define SAFETY_DIST 0.1
 
+typedef struct s_texture
+{
+	void	*img;
+	// char	*path;
+	int		width;
+	int		height;
+}	t_texture;
+
 typedef struct scene_infn
 {
 	char			*textures[4];
+	t_texture		NO;
+	t_texture		EA;
+	t_texture		WE;
+	t_texture		SO;
 	int				fc;
 	int				cc;
 	int				is_duplicate[7];
@@ -164,14 +176,6 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
-typedef struct s_texture
-{
-	void	*img;
-	char	*path;
-	int		width;
-	int		height;
-}	t_texture;
-
 typedef struct s_vars
 {
 	void			*mlx;
@@ -197,7 +201,7 @@ bool	search_bad_chars(char **arr, t_scene_infn *scene);
 bool	check_borders(t_scene_infn *scene, char **arr, int i, int j);
 
 char	**ft_ssplit(char const *s, char const *items);
-bool	validate_map(t_scene_infn *scene);
+bool	validate_map(t_vars *vars);
 bool	get_map_size(t_scene_infn *scene, char *map);
 bool	validate_texture(t_scene_infn *scene, char **str);
 bool	get_colors(t_scene_infn *scene, char **str, char *val);

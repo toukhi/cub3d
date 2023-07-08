@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/20 17:39:20 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/08 15:03:41 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ bool	map_detected(char **str)
 	then splits the string using tabs and spaces to validate texture information,
 	uses the trimmed string and splits it using comma to validate color information
 */
-bool	validate_map(t_scene_infn *scene)
+bool	validate_map(t_vars *vars)
 {
 	char	*str;
 	char	**str2;
