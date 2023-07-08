@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/08 15:03:41 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:17:00 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	validate_map(t_vars *vars)
 	char	**str2;
 	char	*str3;
 
-	str = get_next_line(scene->map_fd);
+	str = get_next_line(vars->scene.map_fd);
 	str2 = 0;
 	while (str)
 	{
@@ -70,11 +70,11 @@ bool	validate_map(t_vars *vars)
 		str2 = ft_ssplit(str3, " \t\r\v\f\n");
 		if (str2 && get_split_size(str2))
 		{
-			if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
+			if (!validate_texture(vars, str2) || !get_colors(&vars->scene, str2, str3))
 				return (free_split(str2), free(str), free(str3), false);
 			if (map_detected(str2))
 			{
-				if (!validate_map_content(str, scene))
+				if (!validate_map_content(str, &vars->scene))
 					return (free_split(str2), free(str3), false);
 				return (free_split(str2), free(str3), true);
 			}
@@ -82,7 +82,7 @@ bool	validate_map(t_vars *vars)
 		free(str);
 		free(str3);
 		free_split(str2);
-		str = get_next_line(scene->map_fd);
+		str = get_next_line(vars->scene.map_fd);
 	}
 	return (true);
 }

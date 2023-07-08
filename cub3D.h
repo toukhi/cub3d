@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/08 15:02:30 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/08 15:15:13 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 # define S_INC "Scene is incomplete"
 # define ERR_L_EMP "Empty line detected"
 # define INV_COMMA "Extra / little commas found"
+# define XPM "XPM file error"
 
 // window attributes
 # define WIN_WIDTH 1100
@@ -203,7 +204,7 @@ bool	check_borders(t_scene_infn *scene, char **arr, int i, int j);
 char	**ft_ssplit(char const *s, char const *items);
 bool	validate_map(t_vars *vars);
 bool	get_map_size(t_scene_infn *scene, char *map);
-bool	validate_texture(t_scene_infn *scene, char **str);
+bool	validate_texture(t_vars *vars, char **str);
 bool	get_colors(t_scene_infn *scene, char **str, char *val);
 bool	validate_map_content(char *str, t_scene_infn *scene);
 void	free_map(t_scene_infn *scene, int i);
