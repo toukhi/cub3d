@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/07 18:26:32 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/08 17:35:56 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	rotate_player(t_vector *dir, t_vector *plane, t_keys *keys)//, int key)
 
 	old_dir = *dir;
 	old_plane = *plane;
+	angle = 0;
 	if (keys->left)
 		angle = -TURN_ANGLE;
 	if (keys->right)
