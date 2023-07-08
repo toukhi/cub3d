@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/08 15:15:13 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/08 16:36:21 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,18 @@
 # define RUN_SPEED 0.05
 # define SAFETY_DIST 0.1
 
-typedef struct s_texture
+typedef struct s_data
 {
 	void	*img;
-	// char	*path;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+typedef struct s_texture
+{
+	t_data	img;
 	int		width;
 	int		height;
 }	t_texture;
@@ -167,15 +175,6 @@ typedef struct s_keys
 	bool	mouse;
 	bool	map;
 }	t_keys;
-
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
 
 typedef struct s_vars
 {

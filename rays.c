@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/08 14:35:56 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/08 21:17:58 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,9 @@ void    draw_ver_line(t_data *data, int x, int y1, int y2, int color)
 void	draw_screen(t_vars *vars)
 {
 	int		ray_num;
-	// int		w;
 	double	cameraX;
 	t_ray	*ray_p;
-
-	// w = WIN_WIDTH;  //vars->scene.longest;
-	// vars->rays = malloc((w + 1) * sizeof(t_ray));
-	// if (!vars->rays)
-	// 	quit(vars);
+	
 	ray_num = -1;
 	while (++ray_num < WIN_WIDTH)
 	{
@@ -143,13 +138,81 @@ void	draw_screen(t_vars *vars)
             drawEnd = WIN_HEIGHT - 1;
 		if (drawEnd < WIN_HEIGHT - 1)
 			draw_ver_line(&vars->image, ray_num, drawEnd + 1, WIN_HEIGHT - 1, vars->scene.fc);
-        if ((*ray_p).side == 0)
-            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, GRAY);
-        else if ((*ray_p).side == 1)
-            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, RED);
-		else if ((*ray_p).side == 2)
-            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, CAMEL);
-		else if ((*ray_p).side == 3)
-            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, WHITE);
+			
+		double wallX;
+		if ((*ray_p).side == 0 || (*ray_p).side == 2)
+			wallX = vars->player.pos.y + (*ray_p).wallDist * (*ray_p).dir.y;
+		else
+			wallX = vars->player.pos.x + (*ray_p).wallDist * (*ray_p).dir.x;
+		wallX -= floor(wallX);
+		int texX = 0; // = (int) wallX * (double) vars->scene.
+		double step = 0;
+		if ((*ray_p).side == 0)
+		{
+			texX = (int) wallX * (double) vars->scene.WE.width;
+			if ((*ray_p).dir.x)
+				texX = vars->scene.WE.width - texX - 1;
+			step = 1.0 * vars->scene.WE.height / lineHeight;
+		}
+		if ((*ray_p).side == 1)
+		{
+			texX = (int) wallX * (double) vars->scene.NO.width;
+			if ((*ray_p).dir.x)
+				texX = vars->scene.NO.width - texX - 1;
+			step = 1.0 * vars->scene.NO.height / lineHeight;
+		}
+		if ((*ray_p).side == 2)
+		{
+			texX = (int) wallX * (double) vars->scene.EA.width;
+			if ((*ray_p).dir.x)
+				texX = vars->scene.EA.width - texX - 1;
+			step = 1.0 * vars->scene.EA.height / lineHeight;
+		}
+		if ((*ray_p).side == 3)
+		{
+			texX = (int) wallX * (double) vars->scene.SO.width;
+			if ((*ray_p).dir.x)
+				texX = vars->scene.SO.width - texX - 1;
+			step = 1.0 * vars->scene.SO.height / lineHeight;
+		}
+		double texPos = (drawStart - WIN_HEIGHT / 2 + lineHeight / 2) * step;
+		int y = drawStart - 1;
+		while (++y < drawEnd)
+		{
+			 int color = 0;
+			int texY = 0;
+			if ((*ray_p).side == 0)
+			{
+				texY = (int)texPos & (vars->scene.WE.height - 1);
+				color = *( int *)(vars->scene.WE.img.addr) + (vars->scene.WE.height * texY * vars->scene.WE.img.line_length + texX * (vars->scene.WE.img.bits_per_pixel / 8));
+			}
+			else if ((*ray_p).side == 1)
+			{
+				texY = (int)texPos & (vars->scene.NO.height - 1);
+				color = *( int *)(vars->scene.NO.img.addr) + (vars->scene.NO.height * texY * vars->scene.NO.img.line_length + texX * (vars->scene.NO.img.bits_per_pixel / 8));
+			}
+			else if ((*ray_p).side == 2)
+			{
+				texY = (int)texPos & (vars->scene.EA.height - 1);
+				color = *( int *)(vars->scene.EA.img.addr) + (vars->scene.EA.height * texY * vars->scene.EA.img.line_length + texX * (vars->scene.EA.img.bits_per_pixel / 8));
+			}
+			else if ((*ray_p).side == 3)
+			{
+				texY = (int)texPos & (vars->scene.SO.height - 1);
+				color = *( int *)(vars->scene.SO.img.addr) + (vars->scene.SO.height * texY * vars->scene.SO.img.line_length + texX * (vars->scene.SO.img.bits_per_pixel / 8));
+			}
+			texPos += step;
+			// color = vars->sce.addr + (vars->scene.NO.height * texY * data->line_length + texX * (vars->data.bits_per_pixel / 8));
+			my_mlx_pixel_put(&vars->image, ray_num, y, color );
+		}
+			
+        // if ((*ray_p).side == 0)
+        //     draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, GRAY);
+        // else if ((*ray_p).side == 1)
+        //     draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, RED);
+		// else if ((*ray_p).side == 2)
+        //     draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, CAMEL);
+		// else if ((*ray_p).side == 3)
+        //     draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, WHITE);
     }
 }
