@@ -1,7 +1,7 @@
-NO ../cub3d/test.xpm
-SO ../cub3d/test.xpm
-WE ../cub3d/test.xpm
-EA ../cub3d/test.xpm
+NO ../cub3d/textures/Gray_wall.xpm
+SO ../cub3d/textures/Light_gray_wall.xpm
+WE ../cub3d/textures/Stone_window.xpm
+EA ../cub3d/textures/Wood.xpm
 
 F 	0   ,   120 , 	 +250 
 

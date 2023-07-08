@@ -1,7 +1,7 @@
-NO ./test.xpm
-SO ./test.xpm
-WE ./test.xpm
-EA ./test.xpm
+NO ./textures/Grey_wall.xpm
+SO ./textures/Light_grey_wall.xpm
+WE ./textures/Stone_window.xpm
+EA ./textures/Wood.xpm
 
 F 220, 100, 0
 C 225, 30, 0
