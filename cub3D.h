@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/07 18:22:36 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/08 12:40:55 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,15 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}	t_data;
+
+typedef struct s_texture
+{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}	t_texture;
 
 typedef struct s_vars
 {
@@ -174,7 +182,7 @@ typedef struct s_vars
 	t_ray			*rays;
 	t_keys			keys;
 	t_vector		mouse_pos;
-}				t_vars;
+}	t_vars;
 
 // parsing utils
 void	init_struct(t_scene_infn *scene);
