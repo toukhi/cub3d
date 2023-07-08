@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/07 15:52:55 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/08 14:35:56 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,19 @@ void    dda(t_ray *ray_p, char **map)//, int ray_num)
 		{
 			(*ray_p).sideDist.x += (*ray_p).deltaDist.x;
 			(*ray_p).mapX += (*ray_p).step.x;
-			(*ray_p).side = 0;
+			if ((*ray_p).step.x < 0)
+				(*ray_p).side = 0;
+			else
+				(*ray_p).side = 2;
 		}
 		else
 		{
 			(*ray_p).sideDist.y += (*ray_p).deltaDist.y;
 			(*ray_p).mapY += (*ray_p).step.y;
-			(*ray_p).side = 1;
+			if ((*ray_p).step.y < 0)
+				(*ray_p).side = 1;
+			else
+				(*ray_p).side = 3;
 		}
 		//Check if ray has hit a wall
 		// printf("current content: %c\n", map[(*ray_p).mapY][(*ray_p).mapX]);
@@ -118,7 +124,7 @@ void	draw_screen(t_vars *vars)
 		set_sideDist(ray_p, vars->player);
 		dda(ray_p, vars->scene.content);//, ray_num);
 		// printf("For ray %d: deltaDX = %f, deltaDY = %f, sideDX = %f, sideDY = %f\n", ray_num, (*ray_p).deltaDist.x, (*ray_p).deltaDist.y, (*ray_p).sideDist.x, (*ray_p).sideDist.y);
-		if ((*ray_p).side == 0)
+		if ((*ray_p).side == 0 || (*ray_p).side == 2)
 			(*ray_p).wallDist = ((*ray_p).sideDist.x - (*ray_p).deltaDist.x);
 		else
 			(*ray_p).wallDist = ((*ray_p).sideDist.y - (*ray_p).deltaDist.y);
@@ -137,9 +143,13 @@ void	draw_screen(t_vars *vars)
             drawEnd = WIN_HEIGHT - 1;
 		if (drawEnd < WIN_HEIGHT - 1)
 			draw_ver_line(&vars->image, ray_num, drawEnd + 1, WIN_HEIGHT - 1, vars->scene.fc);
-        if ((*ray_p).side == 1)
-            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, RED);
-        else
+        if ((*ray_p).side == 0)
             draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, GRAY);
+        else if ((*ray_p).side == 1)
+            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, RED);
+		else if ((*ray_p).side == 2)
+            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, CAMEL);
+		else if ((*ray_p).side == 3)
+            draw_ver_line(&vars->image, ray_num, drawStart, drawEnd, WHITE);
     }
 }
