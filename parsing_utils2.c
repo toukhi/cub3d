@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:54:09 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/20 18:17:20 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/09 11:26:49 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,6 @@ size_t	find_row_size(char *arr)
 	return (i);
 }
 
-bool	check_texture(char *str, char *msg)
-{
-	int	fd;
-
-	fd = open(str, O_RDWR);
-	if (errno == EISDIR)
-		return (ft_putendl_fd(ERR, 2), ft_putstr_fd(msg, 2),
-			ft_putendl_fd("Texture is a directory", 2), true);
-	if (fd != -1)
-		close(fd);
-	fd = open(str, O_RDONLY);
-	// printf("%s\n", str);
-	if (fd == -1)
-		return (ft_putendl_fd(ERR, 2), ft_putstr_fd(msg, 2),
-				perror(""), true);
-	close(fd);
-	return (false);
-}
-
 void	set_start_pos(t_scene_infn *scene, int x, int y, char orientation)
 {
 	scene->s_orient = orientation;
@@ -91,14 +72,14 @@ void	set_start_pos(t_scene_infn *scene, int x, int y, char orientation)
 */
 bool	search_bad_chars(char **arr, t_scene_infn *scene)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (arr[i])
+	i = -1;
+	while (arr[++i])
 	{
-		j = 0;
-		while (arr[i][j])
+		j = -1;
+		while (arr[i][++j])
 		{
 			if (scene->s_orient != '0' && (arr[i][j] == 'N' || arr[i][j] == 'S'
 				|| arr[i][j] == 'E' || arr[i][j] == 'W'))
@@ -109,10 +90,8 @@ bool	search_bad_chars(char **arr, t_scene_infn *scene)
 				return (ft_putendl_fd(ERR, 2), ft_putendl_fd(BAD_CHAR, 2), 1);
 			if (arr[i][j] == 'N' || arr[i][j] == 'S'
 				|| arr[i][j] == 'E' || arr[i][j] == 'W')
-					set_start_pos(scene, j, i, arr[i][j]);
-			j++;
+				set_start_pos(scene, j, i, arr[i][j]);
 		}
-		i++;
 	}
 	if (scene->s_orient == '0')
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_ORIENT, 2), true);

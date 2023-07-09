@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/08 16:36:21 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/09 11:39:54 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,8 @@ size_t	find_row_size(char *arr);
 bool	check_texture(char *str, char *msg);
 bool	search_bad_chars(char **arr, t_scene_infn *scene);
 bool	check_borders(t_scene_infn *scene, char **arr, int i, int j);
+size_t	get_real_size(t_scene_infn *scene);
+void	update_values(t_vars *vars, short index, char **str);
 
 char	**ft_ssplit(char const *s, char const *items);
 bool	validate_map(t_vars *vars);

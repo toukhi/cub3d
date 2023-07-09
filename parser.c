@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/08 15:17:00 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/09 11:28:00 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	check_borders(t_scene_infn *scene, char **arr, int i, int j)
 {
-	if (((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1' && !ft_isspace(arr[i][j])))
+	if (((j == 0 || !arr[i][j + 1]) && (arr[i][j] != '1'
+		&& !ft_isspace(arr[i][j])))
 		|| ((i == 0 || i == (int)scene->size - 1)
 		&& (arr[i][j] != '1' && !ft_isspace(arr[i][j]))) || (arr[i][j] == '0'
 		&& ((int)find_row_size(arr[i + 1]) <= j
@@ -70,7 +71,8 @@ bool	validate_map(t_vars *vars)
 		str2 = ft_ssplit(str3, " \t\r\v\f\n");
 		if (str2 && get_split_size(str2))
 		{
-			if (!validate_texture(vars, str2) || !get_colors(&vars->scene, str2, str3))
+			if (!validate_texture(vars, str2)
+				|| !get_colors(&vars->scene, str2, str3))
 				return (free_split(str2), free(str), free(str3), false);
 			if (map_detected(str2))
 			{
