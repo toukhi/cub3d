@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:47:58 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/08 17:42:50 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/09 11:39:43 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ static bool	check_north(t_vars *vars, char **str)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(N_INEXT, 2), false);
 		if (check_texture(str[1], "On North texture -> "))
 			return (false);
-		vars->scene.textures[0] = ft_strdup(str[1]);
-		vars->scene.counter++;
-		vars->scene.is_duplicate[0]++;
-		vars->scene.NO.img.img = mlx_xpm_file_to_image(&vars->mlx, vars->scene.textures[0], &vars->scene.NO.width, &vars->scene.NO.height);
+		update_values(vars, 0, str);
+		vars->scene.NO.img.img = mlx_xpm_file_to_image(&vars->mlx,
+				vars->scene.textures[0], &vars->scene.NO.width,
+				&vars->scene.NO.height);
 		if (!vars->scene.NO.img.img)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(XPM, 2), false);
-		vars->scene.NO.img.addr = mlx_get_data_addr(vars->scene.NO.img.img, &vars->scene.NO.img.bits_per_pixel, &vars->scene.NO.img.line_length, &vars->scene.NO.img.endian);
+		vars->scene.NO.img.addr = mlx_get_data_addr(vars->scene.NO.img.img,
+				&vars->scene.NO.img.bits_per_pixel,
+				&vars->scene.NO.img.line_length, &vars->scene.NO.img.endian);
 		return (true);
 	}
 	else
@@ -51,13 +53,15 @@ static bool	check_south(t_vars *vars, char **str)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(S_INEXT, 2), false);
 		if (check_texture(str[1], "On South texture -> "))
 			return (false);
-		vars->scene.textures[1] = ft_strdup(str[1]);
-		vars->scene.counter++;
-		vars->scene.is_duplicate[1]++;
-		vars->scene.SO.img.img = mlx_xpm_file_to_image(&vars->mlx, vars->scene.textures[1], &vars->scene.SO.width, &vars->scene.SO.height);
+		update_values(vars, 1, str);
+		vars->scene.SO.img.img = mlx_xpm_file_to_image(&vars->mlx,
+				vars->scene.textures[1], &vars->scene.SO.width,
+				&vars->scene.SO.height);
 		if (!vars->scene.SO.img.img)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(XPM, 2), false);
-		vars->scene.SO.img.addr = mlx_get_data_addr(vars->scene.SO.img.img, &vars->scene.SO.img.bits_per_pixel, &vars->scene.SO.img.line_length, &vars->scene.SO.img.endian);
+		vars->scene.SO.img.addr = mlx_get_data_addr(vars->scene.SO.img.img,
+				&vars->scene.SO.img.bits_per_pixel,
+				&vars->scene.SO.img.line_length, &vars->scene.SO.img.endian);
 		return (true);
 	}
 	else
@@ -77,13 +81,15 @@ static bool	check_west(t_vars *vars, char **str)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(W_INEXT, 2), false);
 		if (check_texture(str[1], "On West texture -> "))
 			return (false);
-		vars->scene.textures[2] = ft_strdup(str[1]);
-		vars->scene.counter++;
-		vars->scene.is_duplicate[2]++;
-		vars->scene.WE.img.img = mlx_xpm_file_to_image(&vars->mlx, vars->scene.textures[2], &vars->scene.WE.width, &vars->scene.WE.height);
+		update_values(vars, 2, str);
+		vars->scene.WE.img.img = mlx_xpm_file_to_image(&vars->mlx,
+				vars->scene.textures[2], &vars->scene.WE.width,
+				&vars->scene.WE.height);
 		if (!vars->scene.WE.img.img)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(XPM, 2), false);
-		vars->scene.WE.img.addr = mlx_get_data_addr(vars->scene.WE.img.img, &vars->scene.WE.img.bits_per_pixel, &vars->scene.WE.img.line_length, &vars->scene.WE.img.endian);
+		vars->scene.WE.img.addr = mlx_get_data_addr(vars->scene.WE.img.img,
+				&vars->scene.WE.img.bits_per_pixel,
+				&vars->scene.WE.img.line_length, &vars->scene.WE.img.endian);
 		return (true);
 	}
 	else
@@ -103,13 +109,15 @@ static bool	check_east(t_vars *vars, char **str)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(E_INEXT, 2), false);
 		if (check_texture(str[1], "On East texture -> "))
 			return (false);
-		vars->scene.textures[3] = ft_strdup(str[1]);
-		vars->scene.counter++;
-		vars->scene.is_duplicate[3]++;
-		vars->scene.EA.img.img = mlx_xpm_file_to_image(&vars->mlx, vars->scene.textures[3], &vars->scene.EA.width, &vars->scene.EA.height);
+		update_values(vars, 3, str);
+		vars->scene.EA.img.img = mlx_xpm_file_to_image(&vars->mlx,
+				vars->scene.textures[3], &vars->scene.EA.width,
+				&vars->scene.EA.height);
 		if (!vars->scene.EA.img.img)
 			return (ft_putendl_fd(ERR, 2), ft_putendl_fd(XPM, 2), false);
-		vars->scene.EA.img.addr = mlx_get_data_addr(vars->scene.EA.img.img, &vars->scene.EA.img.bits_per_pixel, &vars->scene.EA.img.line_length, &vars->scene.EA.img.endian);
+		vars->scene.EA.img.addr = mlx_get_data_addr(vars->scene.EA.img.img,
+				&vars->scene.EA.img.bits_per_pixel,
+				&vars->scene.EA.img.line_length, &vars->scene.EA.img.endian);
 		return (true);
 	}
 	else

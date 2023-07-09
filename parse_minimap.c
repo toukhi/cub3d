@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:24:21 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 15:42:17 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/09 11:29:20 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ bool	create_minimap(t_scene_infn *scene)
 	{
 		scene->minimap[i] = (char *)malloc(sizeof(char) * (scene->longest + 1));
 		if (!scene->minimap[i])
-			return (free_split(scene->minimap), ft_putendl_fd(ERR, 2), perror("Malloc"), false);
+			return (free_split(scene->minimap), ft_putendl_fd(ERR, 2),
+				perror("Malloc"), false);
 		copy_content(scene, i);
 		i++;
 	}

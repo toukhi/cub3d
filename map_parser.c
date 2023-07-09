@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 23:24:04 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/20 17:38:15 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/09 11:25:44 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ char	**construct_map(char *str, t_scene_infn *scene)
 
 static bool	check_spaces(t_scene_infn *scene, int i, int j)
 {
-	// if (ft_isspace(scene->content[i][j]) && (i == 0 ||
-	// i == (int)(scene->size - 1) || (i != 0 && i !=
-	// (int)(scene->size - 1) && ((int)find_row_size(scene->content[i - 1]) <= j
-	// || (int)find_row_size(scene->content[i + 1]) <= j))))
-	// 	return (ft_putendl_fd(ERR, 2), ft_putendl_fd(M_OPEN, 2), true);
 	if (ft_isspace(scene->content[i][j]))
 	{
 		if (i > 0 && (int)find_row_size(scene->content[i - 1]) >= j
@@ -120,36 +115,6 @@ static void	replace_spaces(t_scene_infn *scene)
 	// check for multiple starting values (duplicate starting values)
 	// check for open wall
 */
-
-size_t	get_real_size(t_scene_infn *scene)
-{
-	size_t	i;
-	size_t	j;
-	bool	flag;
-
-	i = 0;
-	while (i < scene->size)
-	{
-		flag = true;
-		if (!ft_strlen(scene->content[i]))
-		{
-			j = i;
-			while (scene->content[j])
-			{
-				if (ft_strlen(scene->content[j]))
-				{
-					flag = false;
-					break ;
-				}
-				j++;
-			}
-			if (flag)
-				return (i);
-		}
-		i++;
-	}
-	return (i);
-}
 
 bool	validate_map_content(char *str, t_scene_infn *scene)
 {
