@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/08 17:35:56 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:48:52 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ int	key_up_hook(int key, t_vars *vars)
 		vars->keys.mouse = !vars->keys.mouse;
 	if (key == M)
 		vars->keys.map = !vars->keys.map;
+	if (key == B)
+		vars->keys.attack = 1;
 	set_keys(key, &(vars->keys), false);
 	return (0);
 }

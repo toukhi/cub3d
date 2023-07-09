@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/09 16:04:37 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/09 17:55:26 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,27 +185,43 @@ void	draw_screen(t_vars *vars)
 void draw_sprite(t_vars *vars)
 {
 	int	*colors;
-	int width = 0;
-	int height = 0;
 	int color = 0;
-	t_data sprite;
-	sprite.img = mlx_xpm_file_to_image(vars->mlx, "./textures/sword.xpm", &width, &height);
-	sprite.addr = mlx_get_data_addr(sprite.img, &sprite.bits_per_pixel, &sprite.line_length, &sprite.endian);
-	colors = ( int *)(sprite.addr);
-	int startX = WIN_WIDTH / 2;
-	int startY = WIN_HEIGHT * 0.75;
-	int texY = 1, texX = 1;
-	while (startX < ceil(WIN_WIDTH * 0.75))
+	int startX = WIN_WIDTH / 5 * 3;
+	t_texture weapon;
+	// printf("attck: %d\n", vars->keys.attack);
+	if (vars->keys.attack == 1 || vars->keys.attack == 3)
 	{
-		while (startY < WIN_HEIGHT)
+		weapon = vars->scene.weapon2;
+		startX -= weapon.width / 2;
+	}
+	if (vars->keys.attack == 2)
+	{
+		weapon = vars->scene.weapon3;
+		startX -= weapon.width;
+	}
+	else
+		weapon = vars->scene.weapon1;
+	colors = ( int *)(weapon.img.addr);
+	
+	int startY;// = WIN_HEIGHT - vars->scene.weapon.height + 150;
+	int texY = 0, texX = 0;
+	while (texX < weapon.width)//startX < ceil(WIN_WIDTH * 0.75))
+	{
+		startY = WIN_HEIGHT - weapon.height;
+		texY = 0;
+		while (texY < weapon.height)
 		{
-			color = colors[((int)(texY) * width + (int)texX)];
+			color = colors[((int)(texY) * weapon.width + (int)texX)];
 			texY++;
-			// color = *(unsigned int *)(sprite.addr + (startY * sprite.line_length + startX * (sprite.bits_per_pixel / 8)));
-			my_mlx_pixel_put(&vars->image, startX, startY, color);
+			if (color != -16777216)
+				my_mlx_pixel_put(&vars->image, startX, startY, color);
 			startY++;
 		}
 		texX++;
 		startX++;
 	}
+	if (vars->keys.attack > 0 && vars->keys.attack < 3)
+		vars->keys.attack++;
+	if (vars->keys.attack == 3)
+		vars->keys.attack = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/09 11:39:54 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/09 17:47:33 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@
 # define ERR_L_EMP "Empty line detected"
 # define INV_COMMA "Extra / little commas found"
 # define XPM "XPM file error"
+# define SPRITE "Sprite does not exist"
 
 // window attributes
-# define WIN_WIDTH 1100
-# define WIN_HEIGHT 700
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 850
 # define RED_CROSS 17
 # define BLOCK_SIZE 15
 
@@ -83,6 +84,7 @@
 # define R 15
 # define X 7
 # define M 46
+# define B 11
 
 // colors
 # define CAMEL 0x00C19A6B
@@ -119,6 +121,9 @@ typedef struct scene_infn
 	t_texture		EA;
 	t_texture		WE;
 	t_texture		SO;
+	t_texture		weapon1;
+	t_texture		weapon2;
+	t_texture		weapon3;
 	int				fc;
 	int				cc;
 	int				is_duplicate[7];
@@ -174,6 +179,7 @@ typedef struct s_keys
 	bool	run;
 	bool	mouse;
 	bool	map;
+	int		attack;
 }	t_keys;
 
 typedef struct s_vars
@@ -213,6 +219,8 @@ void	cleanup(t_scene_infn *scene);
 void	set_longest_line(t_scene_infn *scene);
 bool	create_minimap(t_scene_infn *scene);
 
+bool	check_sprite(t_vars *vars);
+
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
@@ -226,5 +234,6 @@ void	draw_minimap(t_vars *vars);
 void	draw_screen(t_vars *vars);
 
 int		update_scene(t_vars *vars);
+void	attack(t_vars *vars);
 
 #endif
