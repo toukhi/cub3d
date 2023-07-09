@@ -1,7 +1,7 @@
-NO ../cub3d/textures/awesome.xpm
-SO ../cub3d/textures/beige_stone.xpm
-WE ../cub3d/textures/village_wall.xpm
-EA ../cub3d/textures/village.xpm
+NO ./textures/awesome.xpm
+SO ./textures/beige_stone.xpm
+WE ./textures/village_wall.xpm
+EA ./textures/village.xpm
 
 F 	190, 165, 130     
 
