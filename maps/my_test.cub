@@ -1,11 +1,12 @@
-NO ../cub3d/textures/Gray_wall.xpm
-SO ../cub3d/textures/Light_gray_wall.xpm
-WE ../cub3d/textures/Stone_window.xpm
-EA ../cub3d/textures/Wood.xpm
+NO ../cub3d/textures/stone_window.xpm
+SO ../cub3d/textures/stone_window4.xpm
+WE ../cub3d/textures/stone_window2.xpm
+EA ../cub3d/textures/stone_window3.xpm
 
-F 	0   ,   120 , 	 +250 
 
-C					225	,   30	,  0
+F 	71, 74, 83        
+
+C	40, 55, 92
 
 11111      1111111111111     111111111111
     11111110000000000001111110000000000001

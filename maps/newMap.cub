@@ -1,12 +1,12 @@
-NO ../cub3d/test.xpm
-SO ../cub3d/test.xpm
-WE ../cub3d/test.xpm
-EA ../cub3d/test.xpm
+NO ../cub3d/textures/stone_window.xpm
+SO ../cub3d/textures/stone_window4.xpm
+WE ../cub3d/textures/stone_window2.xpm
+EA ../cub3d/textures/stone_window3.xpm
 
 
-F 	0   ,   120 , 	 +250 
+F 	102, 97, 88        
 
-C					225	,   30	,  0
+C	60, 89, 142  
 
 111111111111111111111111111111111111111111111111111
 111111111111111100011111111111111111111111111111111
