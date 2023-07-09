@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/09 01:12:27 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/09 16:04:37 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void    draw_ver_line(t_data *data, int x, int y1, int y2, int color)
     }
 }
 
+void draw_sprite(t_vars *vars);
 void	draw_screen(t_vars *vars)
 {
 	int		ray_num;
@@ -178,4 +179,33 @@ void	draw_screen(t_vars *vars)
 			my_mlx_pixel_put(&vars->image, ray_num, y, color );
 		}
     }
+	draw_sprite(vars);
+}
+
+void draw_sprite(t_vars *vars)
+{
+	int	*colors;
+	int width = 0;
+	int height = 0;
+	int color = 0;
+	t_data sprite;
+	sprite.img = mlx_xpm_file_to_image(vars->mlx, "./textures/sword.xpm", &width, &height);
+	sprite.addr = mlx_get_data_addr(sprite.img, &sprite.bits_per_pixel, &sprite.line_length, &sprite.endian);
+	colors = ( int *)(sprite.addr);
+	int startX = WIN_WIDTH / 2;
+	int startY = WIN_HEIGHT * 0.75;
+	int texY = 1, texX = 1;
+	while (startX < ceil(WIN_WIDTH * 0.75))
+	{
+		while (startY < WIN_HEIGHT)
+		{
+			color = colors[((int)(texY) * width + (int)texX)];
+			texY++;
+			// color = *(unsigned int *)(sprite.addr + (startY * sprite.line_length + startX * (sprite.bits_per_pixel / 8)));
+			my_mlx_pixel_put(&vars->image, startX, startY, color);
+			startY++;
+		}
+		texX++;
+		startX++;
+	}
 }
