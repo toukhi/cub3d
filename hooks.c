@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/13 16:09:58 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/13 23:22:57 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,16 +131,16 @@ void	*make_sound(void *vars)
 	l_vars = (t_vars *)vars;
 	while (true)
 	{
-		pthread_mutex_lock(l_vars->checker);
+		pthread_mutex_lock(&l_vars->checker);
 		if (!l_vars->screen)
 		{
-			pthread_mutex_unlock(l_vars->checker);
+			pthread_mutex_unlock(&l_vars->checker);
 			break ;
 		}
 		if (l_vars->cur_key == B)
 			system("afplay mixkit-heavy-sword-hit-2794.wav");
 		l_vars->cur_key = -1;
-		pthread_mutex_unlock(l_vars->checker);
+		pthread_mutex_unlock(&l_vars->checker);
 		usleep(500);
 
 	}
@@ -149,15 +149,15 @@ void	*make_sound(void *vars)
 
 int	key_up_hook(int key, t_vars *vars)
 {
-	pthread_mutex_lock(vars->checker);
+	pthread_mutex_lock(&vars->checker);
 	vars->cur_key = key;
-	pthread_mutex_unlock(vars->checker);
+	pthread_mutex_unlock(&vars->checker);
 	printf("Key code: %d\n", key);
 	if (key == ESC)
 	{
-		pthread_mutex_lock(vars->checker);
+		pthread_mutex_lock(&vars->checker);
 		vars->screen = false;
-		pthread_mutex_unlock(vars->checker);
+		pthread_mutex_unlock(&vars->checker);
 		quit(vars);
 	}
 	if (key == X)

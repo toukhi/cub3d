@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/13 14:22:39 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/13 23:22:17 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	redraw_image(t_vars *vars)
 
 int	quit(t_vars *vars)
 {
-	pthread_mutex_destroy(vars->checker);
+	pthread_mutex_destroy(&vars->checker);
 	pthread_join(vars->id, 0);
 	cleanup(&vars->scene);
 	if (vars->rays)

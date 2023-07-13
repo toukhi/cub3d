@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/13 16:10:16 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/13 23:21:17 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ typedef struct s_vars
 	t_keys			keys;
 	t_vector		mouse_pos;
 	pthread_t		id;
-	pthread_mutex_t	*checker;
+	pthread_mutex_t	checker;
 	int				cur_key;
 	bool			screen;
 }	t_vars;

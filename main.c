@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/13 14:11:39 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/13 23:22:52 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int	main(int ac, char **av)
 	init_player(&vars);
 	init_rays(&vars);
 	init_keys(&vars);
-	if (pthread_mutex_init(vars.checker, 0))
+	if (pthread_mutex_init(&vars.checker, 0))
 		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2), perror(""), 1);
 	if (pthread_create(&vars.id, 0, make_sound, &vars))
 		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2), perror(""), 1);
