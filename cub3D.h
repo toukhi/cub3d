@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/09 17:47:33 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:10:16 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <sys/stat.h>
 # include <errno.h>
+# include <pthread.h>
 
 //errors
 # define ERR "Error"
@@ -192,9 +193,14 @@ typedef struct s_vars
 	t_ray			*rays;
 	t_keys			keys;
 	t_vector		mouse_pos;
+	pthread_t		id;
+	pthread_mutex_t	*checker;
+	int				cur_key;
+	bool			screen;
 }	t_vars;
 
 // parsing utils
+void	*make_sound(void *vars);
 void	init_struct(t_scene_infn *scene);
 void	free_split(char **str);
 size_t	get_split_size(char **str);

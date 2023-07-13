@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/09 16:09:50 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:22:39 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	redraw_image(t_vars *vars)
 
 int	quit(t_vars *vars)
 {
+	pthread_mutex_destroy(vars->checker);
+	pthread_join(vars->id, 0);
 	cleanup(&vars->scene);
 	if (vars->rays)
 		free(vars->rays);
@@ -53,3 +55,4 @@ int	quit(t_vars *vars)
 	//destroy texture images
 	exit(EXIT_SUCCESS);
 }
+// have added a voice file but delays the sword and i am using system () -> not sure if it is allowed
