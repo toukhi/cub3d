@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 17:29:34 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:50:31 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ void	init_window(t_vars *vars);
 void	redraw_image(t_vars *vars);
 int		quit(t_vars *vars);
 
+void	set_keys(int key, t_keys *keys, bool status);
 int		key_up_hook(int keycode, t_vars *vars);
 int		key_down_hook(int keycode, t_vars *vars);
 int		mouse_move_hook(int x, int y, t_vars *vars);
@@ -239,6 +240,11 @@ void	draw_minimap(t_vars *vars);
 void	draw_screen(t_vars *vars);
 
 int		update_scene(t_vars *vars);
+bool	is_collision(t_vars *vars, double move_speed, int key);
+void	move_player(t_vars *vars);
+void	rotate_player(t_vector *dir, t_vector *plane, t_keys *keys);
+void	rotate_player_mouse(int key, t_vars *vars);
 void	attack(t_vars *vars);
+void	*make_sound(void *vars);
 
 #endif

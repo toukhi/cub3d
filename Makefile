@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+         #
+#    By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 16:03:13 by abiru             #+#    #+#              #
-#    Updated: 2023/07/13 16:06:03 by abiru            ###   ########.fr        #
+#    Updated: 2023/07/14 17:35:39 by yel-touk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HDRS = cub3D.h
 
 SRCS = main.c ft_ssplit.c parser.c parsing_utils.c parsing_utils2.c \
 		texture_parser.c color_parser.c map_parser.c window.c hooks.c \
-		draw_minimap.c parse_minimap.c rays.c parsing_utils3.c
+		draw_minimap.c parse_minimap.c rays.c parsing_utils3.c player.c
 
 CC = cc -g3
 
