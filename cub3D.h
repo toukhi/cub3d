@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 21:41:28 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/15 00:46:52 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,10 @@ bool	create_minimap(t_scene_infn *scene);
 void	free_mem_parsing(char *str, char **str2, char *str3);
 
 // execution utils
+void	init_keys(t_vars *vars);
+void	init_rays(t_vars *vars);
+void	init_player(t_vars *vars);
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_window(t_vars *vars);
 void	redraw_image(t_vars *vars);
