@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 11:25:48 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/09 11:39:47 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:49:02 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,27 @@ void	update_values(t_vars *vars, short index, char **str)
 	vars->scene.textures[index] = ft_strdup(str[1]);
 	vars->scene.counter++;
 	vars->scene.is_duplicate[index]++;
+}
+
+void	set_longest_line(t_scene_infn *scene)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (i < scene->size)
+	{
+		j = ft_strlen(scene->content[i]);
+		if (j > scene->longest)
+			scene->longest = j;
+		i++;
+	}
+}
+
+void	free_mem_parsing(char *str, char **str2, char *str3)
+{
+	free(str);
+	free(str3);
+	free_split(str2);
 }

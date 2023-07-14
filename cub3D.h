@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 17:50:31 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:39:34 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ bool	search_bad_chars(char **arr, t_scene_infn *scene);
 bool	check_borders(t_scene_infn *scene, char **arr, int i, int j);
 size_t	get_real_size(t_scene_infn *scene);
 void	update_values(t_vars *vars, short index, char **str);
+bool	check_sprite(t_vars *vars);
 
 char	**ft_ssplit(char const *s, char const *items);
 bool	validate_map(t_vars *vars);
@@ -223,8 +224,7 @@ void	free_map(t_scene_infn *scene, int i);
 void	cleanup(t_scene_infn *scene);
 void	set_longest_line(t_scene_infn *scene);
 bool	create_minimap(t_scene_infn *scene);
-
-bool	check_sprite(t_vars *vars);
+void	free_mem_parsing(char *str, char **str2, char *str3);
 
 // execution utils
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

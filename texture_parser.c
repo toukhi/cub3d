@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:47:58 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 17:22:31 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:22:51 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,35 +124,6 @@ static bool	check_east(t_vars *vars, char **str)
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(E_ERR, 2), false);
 }
 
-bool	check_sprite(t_vars *vars)
-{
-	vars->scene.weapon1.img.img = mlx_xpm_file_to_image(&vars->mlx,
-				"./textures/knife1.xpm", &vars->scene.weapon1.width,
-				&vars->scene.weapon1.height);
-	if (!vars->scene.weapon1.img.img)
-		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(SPRITE, 2), false);
-	vars->scene.weapon1.img.addr = mlx_get_data_addr(vars->scene.weapon1.img.img,
-			&vars->scene.weapon1.img.bits_per_pixel,
-			&vars->scene.weapon1.img.line_length, &vars->scene.weapon1.img.endian);
-	vars->scene.weapon2.img.img = mlx_xpm_file_to_image(&vars->mlx,
-				"./textures/knife2.xpm", &vars->scene.weapon2.width,
-				&vars->scene.weapon2.height);
-	if (!vars->scene.weapon2.img.img)
-		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(SPRITE, 2), false);
-	vars->scene.weapon2.img.addr = mlx_get_data_addr(vars->scene.weapon2.img.img,
-			&vars->scene.weapon2.img.bits_per_pixel,
-			&vars->scene.weapon2.img.line_length, &vars->scene.weapon2.img.endian);
-	vars->scene.weapon3.img.img = mlx_xpm_file_to_image(&vars->mlx,
-				"./textures/knife3.xpm", &vars->scene.weapon3.width,
-				&vars->scene.weapon3.height);
-	if (!vars->scene.weapon3.img.img)
-		return (ft_putendl_fd(ERR, 2), ft_putendl_fd(SPRITE, 2), false);
-	vars->scene.weapon3.img.addr = mlx_get_data_addr(vars->scene.weapon3.img.img,
-			&vars->scene.weapon3.img.bits_per_pixel,
-			&vars->scene.weapon3.img.line_length, &vars->scene.weapon3.img.endian);
-	return (true);
-}
-
 bool	validate_texture(t_vars *vars, char **str)
 {
 	if (str[0] && !ft_strncmp(str[0], "NO", ft_strlen(str[0])))
@@ -173,6 +144,5 @@ bool	validate_texture(t_vars *vars, char **str)
 	else if (str[0] && !ft_strncmp(str[0], "EA", ft_strlen(str[0])))
 		if (!check_east(vars, str))
 			return (false);
-	
 	return (true);
 }

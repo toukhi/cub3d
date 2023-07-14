@@ -6,27 +6,11 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:53:15 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 14:13:03 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:17:00 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	set_longest_line(t_scene_infn *scene)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (i < scene->size)
-	{
-		j = ft_strlen(scene->content[i]);
-		if (j > scene->longest)
-			scene->longest = j;
-		i++;
-	}
-}
 
 static int	find_clr(int a, int b, int c)
 {
@@ -57,6 +41,22 @@ static bool	get_ind_clrs(char **str, char **tmp, t_scene_infn *scene)
 	return (true);
 }
 
+static bool	get_colors2(char *tmp2, char **str, t_scene_infn *scene)
+{
+	char	**tmp;
+
+	tmp = ft_ssplit(tmp2, ",");
+	if (tmp)
+	{
+		if (!get_ind_clrs(str, tmp, scene))
+			return (free_split(tmp), false);
+		free_split(tmp);
+		return (true);
+	}
+	else
+		return (false);
+}
+
 size_t	get_char_count(char *str, unsigned char c)
 {
 	size_t	i;
@@ -75,14 +75,8 @@ size_t	get_char_count(char *str, unsigned char c)
 	return (count);
 }
 
-/*
-	** 
-	* 
-	* 
-*/
 bool	get_colors(t_scene_infn *scene, char **str, char *val)
 {
-	char	**tmp;
 	char	*tmp2;
 
 	if (!ft_strncmp(str[0], "C", ft_strlen(str[0]))
@@ -93,16 +87,8 @@ bool	get_colors(t_scene_infn *scene, char **str, char *val)
 			tmp2 = ft_strtrim(val + 1, " \t\r\v\f\n");
 			if (get_char_count(tmp2, ',') != 2)
 				return (free(tmp2), ft_putendl_fd(ERR, 2),
-				ft_putendl_fd(INV_COMMA, 2), false);
-			tmp = ft_ssplit(tmp2, ",");
-			free(tmp2);
-			if (tmp)
-			{
-				if (!get_ind_clrs(str, tmp, scene))
-					return (free_split(tmp), false);
-				free_split(tmp);
-			}
-			else
+					ft_putendl_fd(INV_COMMA, 2), false);
+			if (!get_colors2(tmp2, str, scene))
 				return (false);
 		}
 		else

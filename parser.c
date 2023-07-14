@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/09 11:28:00 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/14 20:44:57 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ bool	validate_map(t_vars *vars)
 	char	*str3;
 
 	str = get_next_line(vars->scene.map_fd);
-	str2 = 0;
 	while (str)
 	{
 		str3 = ft_strtrim(str, " \t\r\v\f\n");
@@ -81,9 +80,7 @@ bool	validate_map(t_vars *vars)
 				return (free_split(str2), free(str3), true);
 			}
 		}
-		free(str);
-		free(str3);
-		free_split(str2);
+		free_mem_parsing(str, str2, str3);
 		str = get_next_line(vars->scene.map_fd);
 	}
 	return (true);
