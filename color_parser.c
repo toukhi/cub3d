@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:53:15 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/07 16:07:57 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/14 14:13:03 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ bool	get_colors(t_scene_infn *scene, char **str, char *val)
 				ft_putendl_fd(INV_COMMA, 2), false);
 			tmp = ft_ssplit(tmp2, ",");
 			free(tmp2);
-			if (tmp && tmp2)
+			if (tmp)
 			{
 				if (!get_ind_clrs(str, tmp, scene))
 					return (free_split(tmp), false);
