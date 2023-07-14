@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/13 23:21:17 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/14 17:29:34 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@ typedef struct s_texture
 typedef struct scene_infn
 {
 	char			*textures[4];
-	t_texture		NO;
-	t_texture		EA;
-	t_texture		WE;
-	t_texture		SO;
+	t_texture		no;
+	t_texture		ea;
+	t_texture		we;
+	t_texture		so;
 	t_texture		weapon1;
 	t_texture		weapon2;
 	t_texture		weapon3;
@@ -149,16 +149,15 @@ typedef struct s_vector
 typedef struct s_ray
 {
 	t_vector	dir;
-	t_vector	sideDist;
-	t_vector	deltaDist;
-	double		wallDist;
-	int			mapX;
-	int			mapY;
+	t_vector	side_dist;
+	t_vector	delta_dist;
+	double		wall_dist;
+	int			map_x;
+	int			map_y;
 	t_vector	step;
 	int			hit;
 	int			side;
 }	t_ray;
-
 
 typedef struct s_player
 {
