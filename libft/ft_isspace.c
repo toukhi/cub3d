@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:18:19 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/19 16:26:00 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/14 21:24:06 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	ft_isspace(unsigned char c)
 {
-	if (c == '\t' || c == ' ' || c == '\n' || c == '\r' || c == '\v' || c == '\f')
+	if (c == '\t' || c == ' ' || c == '\n' || c == '\r'
+		|| c == '\v' || c == '\f')
 		return (true);
 	return (false);
 }

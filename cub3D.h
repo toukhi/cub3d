@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 20:39:34 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/14 21:41:28 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,16 @@ typedef struct s_player
 	t_vector	plane;
 }	t_player;
 
+typedef struct sprite_vars
+{
+	int			*colors;
+	int 		color;
+	int			start_x;
+	int			start_y;
+	int			tex_y;
+	int			tex_x;
+}	t_sp_vars;
+
 typedef struct s_keys
 {
 	bool	w;
@@ -238,6 +248,7 @@ int		key_down_hook(int keycode, t_vars *vars);
 int		mouse_move_hook(int x, int y, t_vars *vars);
 void	draw_minimap(t_vars *vars);
 void	draw_screen(t_vars *vars);
+void	draw_sprite(t_vars *vars);
 
 int		update_scene(t_vars *vars);
 bool	is_collision(t_vars *vars, double move_speed, int key);

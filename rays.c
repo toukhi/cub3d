@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 13:32:08 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/14 17:29:32 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:33:57 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,12 @@ void    draw_ver_line(t_data *data, int x, int y1, int y2, int color)
     }
 }
 
-void draw_sprite(t_vars *vars);
 void	draw_screen(t_vars *vars)
 {
 	int		ray_num;
 	double	cameraX;
 	t_ray	*ray_p;
-	
+
 	ray_num = -1;
 	while (++ray_num < WIN_WIDTH)
 	{
@@ -182,46 +181,46 @@ void	draw_screen(t_vars *vars)
 	draw_sprite(vars);
 }
 
-void draw_sprite(t_vars *vars)
-{
-	int	*colors;
-	int color = 0;
-	int startX = WIN_WIDTH / 5 * 3;
-	t_texture weapon;
-	// printf("attck: %d\n", vars->keys.attack);
-	if (vars->keys.attack == 1 || vars->keys.attack == 3)
-	{
-		weapon = vars->scene.weapon2;
-		startX -= weapon.width / 2;
-	}
-	if (vars->keys.attack == 2)
-	{
-		weapon = vars->scene.weapon3;
-		startX -= weapon.width;
-	}
-	else
-		weapon = vars->scene.weapon1;
-	colors = ( int *)(weapon.img.addr);
+// void draw_sprite(t_vars *vars)
+// {
+// 	int	*colors;
+// 	int color = 0;
+// 	int startX = WIN_WIDTH / 5 * 3;
+// 	t_texture weapon;
+// 	// printf("attck: %d\n", vars->keys.attack);
+// 	if (vars->keys.attack == 1 || vars->keys.attack == 3)
+// 	{
+// 		weapon = vars->scene.weapon2;
+// 		startX -= weapon.width / 2;
+// 	}
+// 	if (vars->keys.attack == 2)
+// 	{
+// 		weapon = vars->scene.weapon3;
+// 		startX -= weapon.width;
+// 	}
+// 	else
+// 		weapon = vars->scene.weapon1;
+// 	colors = ( int *)(weapon.img.addr);
 	
-	int startY;// = WIN_HEIGHT - vars->scene.weapon.height + 150;
-	int texY = 0, texX = 0;
-	while (texX < weapon.width)//startX < ceil(WIN_WIDTH * 0.75))
-	{
-		startY = WIN_HEIGHT - weapon.height;
-		texY = 0;
-		while (texY < weapon.height)
-		{
-			color = colors[((int)(texY) * weapon.width + (int)texX)];
-			texY++;
-			if (color != -16777216)
-				my_mlx_pixel_put(&vars->image, startX, startY, color);
-			startY++;
-		}
-		texX++;
-		startX++;
-	}
-	if (vars->keys.attack > 0 && vars->keys.attack < 3)
-		vars->keys.attack++;
-	if (vars->keys.attack == 3)
-		vars->keys.attack = 0;
-}
+// 	int startY;// = WIN_HEIGHT - vars->scene.weapon.height + 150;
+// 	int texY = 0, texX = 0;
+// 	while (texX < weapon.width)//startX < ceil(WIN_WIDTH * 0.75))
+// 	{
+// 		startY = WIN_HEIGHT - weapon.height;
+// 		texY = 0;
+// 		while (texY < weapon.height)
+// 		{
+// 			color = colors[((int)(texY) * weapon.width + (int)texX)];
+// 			texY++;
+// 			if (color != -16777216)
+// 				my_mlx_pixel_put(&vars->image, startX, startY, color);
+// 			startY++;
+// 		}
+// 		texX++;
+// 		startX++;
+// 	}
+// 	if (vars->keys.attack > 0 && vars->keys.attack < 3)
+// 		vars->keys.attack++;
+// 	if (vars->keys.attack == 3)
+// 		vars->keys.attack = 0;
+// }
