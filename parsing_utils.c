@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:38:13 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 16:50:03 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:52:49 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ void	init_scene(t_scene_infn *scene)
 	scene->content = 0;
 	scene->longest = 0;
 	scene->minimap = 0;
+	scene->no = NULL;
+	scene->ea = NULL;
+	scene->so = NULL;
+	scene->we = NULL;
+	scene->weapon1 = NULL;
+	scene->weapon2 = NULL;
+	scene->weapon3 = NULL;
 	while (++i < 7)
 		scene->is_duplicate[i] = 0;
 	i = -1;
