@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 16:50:13 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:52:18 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ typedef struct scene_infn
 	char			*textures[4];
 	t_texture		no;
 	t_texture		ea;
-	t_texture		we;
 	t_texture		so;
+	t_texture		we;
 	t_texture		weapon1;
 	t_texture		weapon2;
 	t_texture		weapon3;
