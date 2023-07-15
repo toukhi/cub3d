@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/15 16:59:36 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:06:09 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,9 @@ int	quit(t_vars *vars)
 {
 	pthread_mutex_destroy(&vars->checker);
 	pthread_join(vars->id, 0);
-	cleanup(&vars->scene);
+	cleanup(vars);
 	if (vars->rays)
 		free(vars->rays);
-	if (vars->scene.no.img.img)
-		mlx_destroy_image(vars->mlx, vars->scene.no.img.img);
-	if (vars->scene.ea.img.img)
-		mlx_destroy_image(vars->mlx, vars->scene.ea.img.img);
-	if (vars->scene.so.img.img)
-		mlx_destroy_image(vars->mlx, vars->scene.so.img.img);
-	if (vars->scene.we.img.img)
-		mlx_destroy_image(vars->mlx, vars->scene.we.img.img);
-	if (vars->scene.weapon1.img.img)
-		mlx_destroy_image(vars->mlx, vars->scene.weapon1.img.img);
-	if (vars->scene.weapon2.img.img)
-		mlx_destroy_image(vars->mlx, vars->scene.weapon2.img.img);
-	if (vars->scene.weapon3.img.img)
-		mlx_destroy_image(vars->mlx, vars->scene.weapon3.img.img);
 	mlx_destroy_image(vars->mlx, vars->image.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(EXIT_SUCCESS);

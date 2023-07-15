@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 16:50:09 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:06:00 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,41 @@ static bool	do_init_validation(int ac, char **av, t_scene_infn *scene)
 	return (true);
 }
 
-void	cleanup(t_scene_infn *scene)
+void	destroy_texture_images(t_vars *vars)
+{
+	if (vars->scene.no.img.img)
+		mlx_destroy_image(vars->mlx, vars->scene.no.img.img);
+	if (vars->scene.ea.img.img)
+		mlx_destroy_image(vars->mlx, vars->scene.ea.img.img);
+	if (vars->scene.so.img.img)
+		mlx_destroy_image(vars->mlx, vars->scene.so.img.img);
+	if (vars->scene.we.img.img)
+		mlx_destroy_image(vars->mlx, vars->scene.we.img.img);
+	if (vars->scene.weapon1.img.img)
+		mlx_destroy_image(vars->mlx, vars->scene.weapon1.img.img);
+	if (vars->scene.weapon2.img.img)
+		mlx_destroy_image(vars->mlx, vars->scene.weapon2.img.img);
+	if (vars->scene.weapon3.img.img)
+		mlx_destroy_image(vars->mlx, vars->scene.weapon3.img.img);
+}
+
+void	cleanup(t_vars *vars)
 {
 	unsigned char	i;
 
-	if (scene->content)
-		free_split(scene->content);
-	if (scene->minimap)
-		free_split(scene->minimap);
+	if (vars->scene.content)
+		free_split(vars->scene.content);
+	if (vars->scene.minimap)
+		free_split(vars->scene.minimap);
 	i = 0;
 	while (i < 4)
 	{
-		if (scene->textures[i])
-			free(scene->textures[i]);
-		scene->textures[i] = 0;
+		if (vars->scene.textures[i])
+			free(vars->scene.textures[i]);
+		vars->scene.textures[i] = 0;
 		i++;
 	}
+	destroy_texture_images(vars);
 }
 
 int	main(int ac, char **av)
@@ -63,22 +82,22 @@ int	main(int ac, char **av)
 	if (!validate_map(&vars))
 	{
 		close(vars.scene.map_fd);
-		return (cleanup(&vars.scene), 1);
+		return (cleanup(&vars), 1);
 	}
 	close(vars.scene.map_fd);
 	if (vars.scene.counter != 7)
-		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2),
+		return (cleanup(&vars), ft_putendl_fd(ERR, 2),
 			ft_putendl_fd(S_INC, 2), 1);
 	if (!check_sprite(&vars))
-		return (cleanup(&vars.scene), false);
+		return (cleanup(&vars), false);
 	init_window(&vars);
 	init_player(&vars);
 	init_rays(&vars);
 	init_keys(&vars);
 	if (pthread_mutex_init(&vars.checker, 0))
-		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2), perror(""), 1);
+		return (cleanup(&vars), ft_putendl_fd(ERR, 2), perror(""), 1);
 	if (pthread_create(&vars.id, 0, make_sound, &vars))
-		return (cleanup(&vars.scene), ft_putendl_fd(ERR, 2), perror(""), 1);
+		return (cleanup(&vars), ft_putendl_fd(ERR, 2), perror(""), 1);
 	draw_screen(&vars);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
 	mlx_key_hook(vars.win, key_up_hook, &vars);
