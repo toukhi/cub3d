@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:38:13 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/16 15:43:41 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:50:03 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_struct(t_scene_infn *scene)
+void	init_scene(t_scene_infn *scene)
 {
 	int	i;
 

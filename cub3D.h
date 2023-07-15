@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 16:34:51 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:50:13 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ typedef struct s_vars
 
 // parsing utils
 void	*make_sound(void *vars);
-void	init_struct(t_scene_infn *scene);
+void	init_scene(t_scene_infn *scene);
 void	free_split(char **str);
 size_t	get_split_size(char **str);
 bool	is_space(char *str);
