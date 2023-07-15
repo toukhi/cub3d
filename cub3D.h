@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 14:24:57 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:34:51 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,10 @@ typedef struct s_ray
 	t_vector	step;
 	int			hit;
 	int			side;
+	int			draw_start;
+	int			draw_end;
+	double		wall_x;
+	t_texture	texture;
 }	t_ray;
 
 typedef struct s_player
@@ -169,7 +173,7 @@ typedef struct s_player
 typedef struct sprite_vars
 {
 	int			*colors;
-	int 		color;
+	int			color;
 	int			start_x;
 	int			start_y;
 	int			tex_y;
@@ -254,6 +258,18 @@ void	draw_minimap(t_vars *vars);
 void	draw_screen(t_vars *vars);
 void	draw_sprite(t_vars *vars);
 
+void	set_side_dist(t_ray *ray_p, t_player p);
+void	set_ray_p(t_ray **ray_p, int ray_num, t_vars *vars);
+void	set_wall_dist(t_ray **ray_p);
+void	set_texture(t_ray **ray_p, t_vars *vars);
+void	set_wall_x(t_ray **ray_p, t_vars *vars);
+
+void	dda(t_ray *ray_p, char **map);
+void	draw_ver_line(t_data *data, int x, t_vector y, int color);
+void	draw_background(t_ray **ray_p, t_vars *vars,
+			int wall_height, int ray_num);
+void	draw_wall(t_ray *ray_p, t_vars *vars, int pixel_x, int wall_height);
+void	draw_screen(t_vars *vars);
 int		update_scene(t_vars *vars);
 bool	is_collision(t_vars *vars, double move_speed, int key);
 void	move_player(t_vars *vars);
