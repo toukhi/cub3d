@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 17:05:35 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/15 23:31:33 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,11 +271,15 @@ void	draw_background(t_ray **ray_p, t_vars *vars,
 void	draw_wall(t_ray *ray_p, t_vars *vars, int pixel_x, int wall_height);
 void	draw_screen(t_vars *vars);
 int		update_scene(t_vars *vars);
-bool	is_collision(t_vars *vars, double move_speed, int key);
+bool	is_collision_x(t_vars *vars, double move_speed, int key);
+bool	is_collision_y(t_vars *vars, double move_speed, int key);
+void	move_forward(t_vars *vars, double move_speed);
+void	move_backward(t_vars *vars, double move_speed);
+void	move_right(t_vars *vars, double move_speed);
+void	move_left(t_vars *vars, double move_speed);
 void	move_player(t_vars *vars);
 void	rotate_player(t_vector *dir, t_vector *plane, t_keys *keys);
 void	rotate_player_mouse(int key, t_vars *vars);
-void	attack(t_vars *vars);
 void	*make_sound(void *vars);
 
 #endif
