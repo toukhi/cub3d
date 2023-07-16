@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/14 17:49:37 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/16 18:07:49 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	key_up_hook(int key, t_vars *vars)
 	pthread_mutex_lock(&vars->checker);
 	vars->cur_key = key;
 	pthread_mutex_unlock(&vars->checker);
-	printf("Key code: %d\n", key);
 	if (key == ESC)
 	{
 		pthread_mutex_lock(&vars->checker);
