@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 17:06:00 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/16 14:04:54 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,27 @@ void	cleanup(t_vars *vars)
 	destroy_texture_images(vars);
 }
 
+bool	init(t_vars *vars)
+{
+	init_window(vars);
+	init_player(vars);
+	init_rays(vars);
+	init_keys(vars);
+	if (pthread_mutex_init(&(vars->checker), 0))
+		return (cleanup(vars), ft_putendl_fd(ERR, 2), perror(""), false);
+	if (pthread_create(&(vars->id), 0, make_sound, vars))
+		return (cleanup(vars), ft_putendl_fd(ERR, 2), perror(""), false);
+	draw_screen(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->image.img, 0, 0);
+	mlx_key_hook(vars->win, key_up_hook, vars);
+	mlx_hook(vars->win, 2, 0, key_down_hook, vars);
+	mlx_hook(vars->win, RED_CROSS, 0, quit, vars);
+	mlx_hook(vars->win, 6, 0, mouse_move_hook, vars);
+	mlx_loop_hook(vars->mlx, update_scene, vars);
+	mlx_loop(vars->mlx);
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
 	t_vars	vars;
@@ -90,20 +111,6 @@ int	main(int ac, char **av)
 			ft_putendl_fd(S_INC, 2), 1);
 	if (!check_sprite(&vars))
 		return (cleanup(&vars), false);
-	init_window(&vars);
-	init_player(&vars);
-	init_rays(&vars);
-	init_keys(&vars);
-	if (pthread_mutex_init(&vars.checker, 0))
-		return (cleanup(&vars), ft_putendl_fd(ERR, 2), perror(""), 1);
-	if (pthread_create(&vars.id, 0, make_sound, &vars))
-		return (cleanup(&vars), ft_putendl_fd(ERR, 2), perror(""), 1);
-	draw_screen(&vars);
-	mlx_put_image_to_window(vars.mlx, vars.win, vars.image.img, 0, 0);
-	mlx_key_hook(vars.win, key_up_hook, &vars);
-	mlx_hook(vars.win, 2, 0, key_down_hook, &vars);
-	mlx_hook(vars.win, RED_CROSS, 0, quit, &vars);
-	mlx_hook(vars.win, 6, 0, mouse_move_hook, &vars);
-	mlx_loop_hook(vars.mlx, update_scene, &vars);
-	mlx_loop(vars.mlx);
+	if (!init(&vars))
+		return (1);
 }
