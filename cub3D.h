@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/15 23:31:33 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/16 17:58:36 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@
 // window attributes
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 850
+# define MAP_WIDTH 375
+# define MAP_HEIGHT 225
+# define MAP_PADDING 10
 # define RED_CROSS 17
 # define BLOCK_SIZE 15
 
