@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youssef <youssef@student.42.fr>            +#+  +:+       +#+         #
+#    By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 16:03:13 by abiru             #+#    #+#              #
-#    Updated: 2023/07/15 23:30:28 by youssef          ###   ########.fr        #
+#    Updated: 2023/07/16 16:08:11 by abiru            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = main.c ft_ssplit.c parser.c parsing_utils.c parsing_utils2.c \
 		draw_minimap.c parse_minimap.c rays.c parsing_utils3.c player.c \
 		sprite.c init.c draw_screen.c player_utils.c
 
-CC = cc -g3
+CC = cc
 
 CFLAGS = -Wextra -Werror -Wall
 
