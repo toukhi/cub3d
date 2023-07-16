@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 23:25:40 by youssef           #+#    #+#             */
-/*   Updated: 2023/07/15 23:26:24 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/16 16:24:01 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,16 @@ void	*make_sound(void *vars)
 			break ;
 		}
 		if (l_vars->cur_key == B)
+		{
+			l_vars->cur_key = -1;
+			pthread_mutex_unlock(&l_vars->checker);
 			system("afplay mixkit-heavy-sword-hit-2794.wav");
-		l_vars->cur_key = -1;
-		pthread_mutex_unlock(&l_vars->checker);
+		}
+		else
+		{
+			l_vars->cur_key = -1;
+			pthread_mutex_unlock(&l_vars->checker);
+		}
 		usleep(500);
 	}
 	return (0);
