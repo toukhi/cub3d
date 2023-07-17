@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/17 18:40:39 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/17 20:31:58 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int	quit(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->image_map.img);
 	mlx_destroy_image(vars->mlx, vars->image.img);
 	mlx_destroy_window(vars->mlx, vars->win);
+	free(vars->mlx);
 	exit(EXIT_SUCCESS);
 }
