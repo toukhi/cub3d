@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/17 17:53:18 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:41:31 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	main(int ac, char **av)
 	init_scene(&vars.scene);
 	if (!get_map_size(&vars.scene, av[1]))
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd("Invalid map", 2), 1);
+	vars.mlx = mlx_init();
 	if (!validate_map(&vars))
 	{
 		close(vars.scene.map_fd);
