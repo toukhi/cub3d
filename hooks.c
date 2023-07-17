@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/17 18:03:24 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/18 01:17:34 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ void	set_keys(int key, t_keys *keys, bool status)
 		keys->run = status;
 }
 
-// void	update_mouse(t_vars *vars)
-// {
-// 	vars->keys.mouse = !vars->keys.mouse;
-// 	if (vars->keys.mouse)
-// 		mlx_mouse_hide();
-// 	else
-// 		mlx_mouse_show();
-// }
+void	update_mouse(t_vars *vars)
+{
+	vars->keys.mouse = !vars->keys.mouse;
+	if (vars->keys.mouse)
+		mlx_mouse_hide();
+	else
+		mlx_mouse_show();
+}
 
 int	key_up_hook(int key, t_vars *vars)
 {
@@ -56,7 +56,7 @@ int	key_up_hook(int key, t_vars *vars)
 		quit(vars);
 	}
 	if (key == X)
-		vars->keys.mouse = !vars->keys.mouse;
+		update_mouse(vars);
 	if (key == B)
 	{
 		vars->keys.attack = 1;
@@ -75,29 +75,26 @@ int	mouse_move_hook(int x, int y, t_vars *vars)
 {
 	if (vars->keys.mouse)
 	{
-		if (x < WIN_WIDTH / 3 && x >= 0)
-			set_keys(LEFT_ARROW, &(vars->keys), true);
-		else if (x > WIN_WIDTH / 3 * 2 && x <= WIN_WIDTH)
-			set_keys(RIGHT_ARROW, &(vars->keys), true);
-		else
+		if (x >= WIN_WIDTH)
 		{
-			set_keys(LEFT_ARROW, &(vars->keys), false);
-			set_keys(RIGHT_ARROW, &(vars->keys), false);
-			if (vars->mouse_pos.x < x)
-				rotate_player_mouse(RIGHT_ARROW, vars);
-			if (vars->mouse_pos.x > x)
-				rotate_player_mouse(LEFT_ARROW, vars);
+			mlx_mouse_move(vars->win, 0, WIN_HEIGHT / 2);
+			vars->mouse_pos.x = 0;
+			return (0);
 		}
+		if (x <= 0)
+		{
+			mlx_mouse_move(vars->win, WIN_WIDTH, WIN_HEIGHT / 2);
+			vars->mouse_pos.x = WIN_WIDTH;
+			return (0);
+		}
+		set_keys(LEFT_ARROW, &(vars->keys), false);
+		set_keys(RIGHT_ARROW, &(vars->keys), false);
+		if (vars->mouse_pos.x < x)
+			rotate_player_mouse(RIGHT_ARROW, vars);
+		if (vars->mouse_pos.x > x)
+			rotate_player_mouse(LEFT_ARROW, vars);
 	}
 	vars->mouse_pos.x = x;
 	vars->mouse_pos.y = y;
-	return (0);
-}
-
-int	update_scene(t_vars *vars)
-{
-	move_player(vars);
-	rotate_player(&(vars->player.dir), &(vars->player.plane), &(vars->keys));
-	redraw_image(vars);
 	return (0);
 }

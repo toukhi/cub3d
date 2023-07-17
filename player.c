@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:33:51 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/15 23:26:18 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/18 01:04:08 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	rotate_player(t_vector *dir, t_vector *plane, t_keys *keys)
 void	rotate_player_mouse(int key, t_vars *vars)
 {
 	set_keys(key, &(vars->keys), true);
+	rotate_player(&(vars->player.dir), &(vars->player.plane), &(vars->keys));
 	rotate_player(&(vars->player.dir), &(vars->player.plane), &(vars->keys));
 	set_keys(key, &(vars->keys), false);
 }
