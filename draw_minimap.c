@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:24:48 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/17 17:54:52 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:09:10 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_minimap2(t_vars *vars, t_vector *pixel,
 	int	y;
 	int	color;
 
-	pixel->y = 0;//MAP_PADDING;
+	pixel->y = 0;
 	pos->y = vars->player.pos.y - (double)MAP_HEIGHT / 2 / BLOCK_SIZE;
 	step->y = (vars->player.pos.y - pos->y) / ((double)MAP_HEIGHT / 2);
 	x = (int)floor(pos->x);
@@ -60,7 +60,7 @@ void	draw_minimap2(t_vars *vars, t_vector *pixel,
 		x = 0;
 	else if (pos->x >= vars->scene.longest)
 		x = (int) vars->scene.longest - 1;
-	while (pixel->y < MAP_HEIGHT)// + MAP_PADDING)
+	while (pixel->y < MAP_HEIGHT)
 	{
 		y = (int)floor(pos->y);
 		if (pos->y < 0)
