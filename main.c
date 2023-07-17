@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/16 14:04:54 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/17 17:53:18 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ bool	init(t_vars *vars)
 	if (pthread_create(&(vars->id), 0, make_sound, vars))
 		return (cleanup(vars), ft_putendl_fd(ERR, 2), perror(""), false);
 	draw_screen(vars);
+	draw_minimap(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->image.img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->image_map.img,
+		MAP_PADDING, MAP_PADDING);
 	mlx_key_hook(vars->win, key_up_hook, vars);
 	mlx_hook(vars->win, 2, 0, key_down_hook, vars);
 	mlx_hook(vars->win, RED_CROSS, 0, quit, vars);

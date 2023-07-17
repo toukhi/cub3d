@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/16 17:58:36 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:03:30 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,6 @@ typedef struct s_keys
 	bool	up;
 	bool	run;
 	bool	mouse;
-	bool	map;
 	int		attack;
 }	t_keys;
 
@@ -204,6 +203,7 @@ typedef struct s_vars
 	void			*mlx;
 	void			*win;
 	t_data			image;
+	t_data			image_map;
 	t_scene_infn	scene;
 	t_player		player;
 	t_ray			*rays;

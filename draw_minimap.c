@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:24:48 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/17 00:13:17 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/17 17:54:52 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_minimap2(t_vars *vars, t_vector *pixel,
 	int	y;
 	int	color;
 
-	pixel->y = MAP_PADDING;
+	pixel->y = 0;//MAP_PADDING;
 	pos->y = vars->player.pos.y - (double)MAP_HEIGHT / 2 / BLOCK_SIZE;
 	step->y = (vars->player.pos.y - pos->y) / ((double)MAP_HEIGHT / 2);
 	x = (int)floor(pos->x);
@@ -60,7 +60,7 @@ void	draw_minimap2(t_vars *vars, t_vector *pixel,
 		x = 0;
 	else if (pos->x >= vars->scene.longest)
 		x = (int) vars->scene.longest - 1;
-	while (pixel->y < MAP_HEIGHT + MAP_PADDING)
+	while (pixel->y < MAP_HEIGHT)// + MAP_PADDING)
 	{
 		y = (int)floor(pos->y);
 		if (pos->y < 0)
@@ -68,7 +68,8 @@ void	draw_minimap2(t_vars *vars, t_vector *pixel,
 		else if (pos->y >= (int)vars->scene.size)
 			y = (int) vars->scene.size - 1;
 		color = get_color(vars->scene.minimap[y][x]);
-		my_mlx_pixel_put(&vars->image, pixel->x, pixel->y, color);
+		color += 0x40000000;
+		my_mlx_pixel_put(&vars->image_map, pixel->x, pixel->y, color);
 		pixel->y++;
 		pos->y += step->y;
 	}
@@ -80,16 +81,16 @@ void	draw_minimap(t_vars *vars)
 	t_vector	pos;
 	t_vector	step;
 
-	pixel.x = MAP_PADDING;
+	pixel.x = 0;
 	pos.x = vars->player.pos.x - (double)MAP_WIDTH / BLOCK_SIZE / 2 ;
 	step.x = (vars->player.pos.x - pos.x) / ((double)MAP_WIDTH / 2);
-	while (pixel.x < MAP_WIDTH + MAP_PADDING)
+	while (pixel.x < MAP_WIDTH)
 	{
 		draw_minimap2(vars, &pixel, &pos, &step);
 		pixel.x++;
 		pos.x += step.x;
 	}
-	pixel.x = MAP_WIDTH / 2 + MAP_PADDING;
-	pixel.y = MAP_HEIGHT / 2 + MAP_PADDING;
-	draw_square(&vars->image, pixel, 4, RED);
+	pixel.x = MAP_WIDTH / 2;
+	pixel.y = MAP_HEIGHT / 2;
+	draw_square(&vars->image_map, pixel, 4, RED);
 }

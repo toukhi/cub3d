@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/16 18:07:49 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:03:24 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ void	set_keys(int key, t_keys *keys, bool status)
 		keys->run = status;
 }
 
+// void	update_mouse(t_vars *vars)
+// {
+// 	vars->keys.mouse = !vars->keys.mouse;
+// 	if (vars->keys.mouse)
+// 		mlx_mouse_hide();
+// 	else
+// 		mlx_mouse_show();
+// }
+
 int	key_up_hook(int key, t_vars *vars)
 {
 	pthread_mutex_lock(&vars->checker);
@@ -48,8 +57,6 @@ int	key_up_hook(int key, t_vars *vars)
 	}
 	if (key == X)
 		vars->keys.mouse = !vars->keys.mouse;
-	if (key == M)
-		vars->keys.map = !vars->keys.map;
 	if (key == B)
 	{
 		vars->keys.attack = 1;

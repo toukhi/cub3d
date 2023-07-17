@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:09:38 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/16 17:22:59 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:03:59 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	init_keys(t_vars *vars)
 	vars->keys.run = false;
 	vars->keys.mouse = false;
 	vars->keys.attack = false;
-	vars->keys.map = false;
 	vars->cur_key = -1;
 	vars->screen = true;
 }

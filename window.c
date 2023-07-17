@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/15 17:06:09 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:54:09 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,20 @@ void	init_window(t_vars *vars)
 	vars->image.addr = mlx_get_data_addr(vars->image.img,
 			&vars->image.bits_per_pixel, &vars->image.line_length,
 			&vars->image.endian);
+	vars->image_map.img = mlx_new_image(vars->mlx, MAP_WIDTH, MAP_HEIGHT);
+	vars->image_map.addr = mlx_get_data_addr(vars->image_map.img, 
+			&vars->image_map.bits_per_pixel, &vars->image_map.line_length,
+			&vars->image_map.endian);
 }
 
 void	redraw_image(t_vars *vars)
 {
-	mlx_destroy_image(vars->mlx, vars->image.img);
-	vars->image.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
-	vars->image.addr = mlx_get_data_addr(vars->image.img,
-			&vars->image.bits_per_pixel, &vars->image.line_length,
-			&vars->image.endian);
+	mlx_clear_window(vars->mlx, vars->win);
 	draw_screen(vars);
-	if (vars->keys.map)
-		draw_minimap(vars);
+	draw_minimap(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->image.img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->image_map.img,
+		MAP_PADDING, MAP_PADDING);
 }
 
 int	quit(t_vars *vars)
@@ -50,6 +51,7 @@ int	quit(t_vars *vars)
 	cleanup(vars);
 	if (vars->rays)
 		free(vars->rays);
+	mlx_destroy_image(vars->mlx, vars->image_map.img);
 	mlx_destroy_image(vars->mlx, vars->image.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(EXIT_SUCCESS);
