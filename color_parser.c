@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:53:15 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 20:17:00 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/17 13:12:45 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static bool	get_colors2(char *tmp2, char **str, t_scene_infn *scene)
 	char	**tmp;
 
 	tmp = ft_ssplit(tmp2, ",");
+	free(tmp2);
 	if (tmp)
 	{
 		if (!get_ind_clrs(str, tmp, scene))
@@ -53,8 +54,7 @@ static bool	get_colors2(char *tmp2, char **str, t_scene_infn *scene)
 		free_split(tmp);
 		return (true);
 	}
-	else
-		return (false);
+	return (false);
 }
 
 size_t	get_char_count(char *str, unsigned char c)
