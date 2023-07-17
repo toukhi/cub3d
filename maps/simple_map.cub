@@ -1,7 +1,7 @@
-NO ./textures/awesome.xpm
+NO ./textures/grass_wall.xpm
 SO ./textures/beige_stone.xpm
 WE ./textures/village_wall.xpm
-EA ./textures/village.xpm
+EA ./textures/village_door.xpm
 
 F 	190, 165, 130     
 
