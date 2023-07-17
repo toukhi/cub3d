@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:35:54 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/16 16:06:37 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/17 14:37:54 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,18 @@ bool	map_detected(char **str)
 {
 	if (!ft_strncmp(str[0], "C", ft_strlen(str[0]))
 		|| !ft_strncmp(str[0], "F", ft_strlen(str[0]))
-		|| !ft_strncmp(str[0], "EA", ft_strlen(str[0]))
-		|| !ft_strncmp(str[0], "WE", ft_strlen(str[0]))
-		|| !ft_strncmp(str[0], "NO", ft_strlen(str[0]))
-		|| !ft_strncmp(str[0], "SO", ft_strlen(str[0])))
+		|| !ft_strcmp(str[0], "EA")
+		|| !ft_strcmp(str[0], "WE")
+		|| !ft_strcmp(str[0], "NO")
+		|| !ft_strcmp(str[0], "SO"))
 		return (false);
 	return (true);
 }
 
-// static bool	validate_elts(t_scene_infn *scene, char *str, char **str2,
-// 	char *str3)
-// {
-// 	if (!validate_texture(scene, str2) || !get_colors(scene, str2, str3))
-// 		return (free_split(str2), free(str), free(str3), false);
-// 	else if (map_detected(str2))
-// 	{
-// 		free_split(str2);
-// 		free(str3);
-// 		if (!validate_map_content(str, scene))
-// 			return (false);
-// 		return (true);
-// 	}
-// 	return (true);
-// }
-
 /*
-	- reads a line, trims space character including newline, 
-	then splits the string using tabs and spaces to validate texture information,
-	uses the trimmed string and splits it using comma to validate color information
+	* reads a line, trims space character including newline, 
+	* splits the string using tabs and spaces to validate texture information,
+	* uses the trimmed string and splits it using comma to validate color infn
 */
 bool	validate_map(t_vars *vars)
 {

@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:47:58 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/14 20:22:51 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/17 14:48:46 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,22 +126,22 @@ static bool	check_east(t_vars *vars, char **str)
 
 bool	validate_texture(t_vars *vars, char **str)
 {
-	if (str[0] && !ft_strncmp(str[0], "NO", ft_strlen(str[0])))
+	if (str[0] && !ft_strcmp(str[0], "NO"))
 	{
 		if (!check_north(vars, str))
 			return (false);
 	}
-	else if (str[0] && !ft_strncmp(str[0], "SO", ft_strlen(str[0])))
+	else if (str[0] && !ft_strcmp(str[0], "SO"))
 	{
 		if (!check_south(vars, str))
 			return (false);
 	}
-	else if (str[0] && !ft_strncmp(str[0], "WE", ft_strlen(str[0])))
+	else if (str[0] && !ft_strcmp(str[0], "WE"))
 	{
 		if (!check_west(vars, str))
 			return (false);
 	}
-	else if (str[0] && !ft_strncmp(str[0], "EA", ft_strlen(str[0])))
+	else if (str[0] && !ft_strcmp(str[0], "EA"))
 		if (!check_east(vars, str))
 			return (false);
 	return (true);
