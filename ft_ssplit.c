@@ -6,7 +6,7 @@
 /*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:23:00 by abiru             #+#    #+#             */
-/*   Updated: 2023/06/19 17:23:20 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/18 14:20:46 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	**ft_ssplit(char const *s, char const *items)
 		return (ft_putendl_fd(ERR, 2), perror("Malloc"), NULL);
 	ptr = 0;
 	if (!split_str(res, ptr, s, items))
-		return (free(res), NULL);
+		return (NULL);
 	res[ft_count(s, items)] = 0;
 	return (res);
 }
