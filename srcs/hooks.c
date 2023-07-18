@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/18 11:23:47 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/18 18:41:19 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ void	set_keys(int key, t_keys *keys, bool status)
 		keys->s = status;
 	if (key == D)
 		keys->d = status;
-	if (key == UP_ARROW)
-		keys->up = status;
 	if (key == LEFT_ARROW)
 		keys->left = status;
-	if (key == DOWN_ARROW)
-		keys->down = status;
 	if (key == RIGHT_ARROW)
 		keys->right = status;
 	if (key == R)
@@ -45,22 +41,12 @@ void	update_mouse(t_vars *vars)
 
 int	key_up_hook(int key, t_vars *vars)
 {
-	pthread_mutex_lock(&vars->checker);
-	vars->cur_key = key;
-	pthread_mutex_unlock(&vars->checker);
 	if (key == ESC)
-	{
-		pthread_mutex_lock(&vars->checker);
-		vars->screen = false;
-		pthread_mutex_unlock(&vars->checker);
 		quit(vars);
-	}
 	if (key == X)
 		update_mouse(vars);
 	if (key == B)
-	{
 		vars->keys.attack = 1;
-	}
 	set_keys(key, &(vars->keys), false);
 	return (0);
 }

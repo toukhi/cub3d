@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_utils.c                                     :+:      :+:    :+:   */
+/*   player_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 23:25:40 by youssef           #+#    #+#             */
-/*   Updated: 2023/07/16 16:24:01 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/18 19:13:58 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	move_forward(t_vars *vars, double move_speed)
 {
@@ -61,7 +61,7 @@ void	*make_sound(void *vars)
 		{
 			l_vars->cur_key = -1;
 			pthread_mutex_unlock(&l_vars->checker);
-			system("afplay mixkit-heavy-sword-hit-2794.wav");
+			system("afplay ./audio/mixkit-heavy-sword-hit-2794.wav");
 		}
 		else
 		{

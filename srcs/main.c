@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:19:50 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/17 18:41:31 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:42:10 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ bool	init(t_vars *vars)
 	init_player(vars);
 	init_rays(vars);
 	init_keys(vars);
-	if (pthread_mutex_init(&(vars->checker), 0))
-		return (cleanup(vars), ft_putendl_fd(ERR, 2), perror(""), false);
-	if (pthread_create(&(vars->id), 0, make_sound, vars))
-		return (cleanup(vars), ft_putendl_fd(ERR, 2), perror(""), false);
 	draw_screen(vars);
 	draw_minimap(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->image.img, 0, 0);
@@ -100,7 +96,7 @@ int	main(int ac, char **av)
 
 	if (!do_init_validation(ac, av, &vars.scene))
 		return (1);
-	init_scene(&vars.scene);
+	init_scene(&vars);
 	if (!get_map_size(&vars.scene, av[1]))
 		return (ft_putendl_fd(ERR, 2), ft_putendl_fd("Invalid map", 2), 1);
 	vars.mlx = mlx_init();

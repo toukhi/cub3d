@@ -6,7 +6,7 @@
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:09:38 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/17 18:03:59 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:11:01 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,9 @@ void	init_keys(t_vars *vars)
 	vars->keys.a = false;
 	vars->keys.s = false;
 	vars->keys.d = false;
-	vars->keys.up = false;
 	vars->keys.left = false;
-	vars->keys.down = false;
 	vars->keys.right = false;
 	vars->keys.run = false;
 	vars->keys.mouse = false;
 	vars->keys.attack = false;
-	vars->cur_key = -1;
-	vars->screen = true;
 }

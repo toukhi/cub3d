@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:18:47 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/17 18:03:30 by yel-touk         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:11:33 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include "./libft/libft.h"
-# include "mlx/mlx.h"
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <fcntl.h>
 # include <stdbool.h>
@@ -81,9 +81,7 @@
 # define A 0
 # define S 1
 # define D 2
-# define UP_ARROW 126
 # define LEFT_ARROW 123
-# define DOWN_ARROW 125
 # define RIGHT_ARROW 124
 # define R 15
 # define X 7
@@ -190,9 +188,7 @@ typedef struct s_keys
 	bool	s;
 	bool	d;
 	bool	left;
-	bool	down;
 	bool	right;
-	bool	up;
 	bool	run;
 	bool	mouse;
 	int		attack;
@@ -217,7 +213,7 @@ typedef struct s_vars
 
 // parsing utils
 void	*make_sound(void *vars);
-void	init_scene(t_scene_infn *scene);
+void	init_scene(t_vars *vars);
 void	free_split(char **str);
 size_t	get_split_size(char **str);
 bool	is_space(char *str);

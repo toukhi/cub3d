@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssplit.c                                        :+:      :+:    :+:   */
+/*   ft_ssplit_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:23:00 by abiru             #+#    #+#             */
-/*   Updated: 2023/07/18 14:20:46 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:56:15 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include <stdio.h>
-#include <stdbool.h>
+#include "cub3D_bonus.h"
 
 static size_t	ft_count(char const *s, char const *items)
 {

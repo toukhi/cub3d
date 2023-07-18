@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   window_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
+/*   By: yel-touk <yel-touk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/18 12:52:29 by abiru            ###   ########.fr       */
+/*   Updated: 2023/07/18 18:57:14 by yel-touk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -45,8 +45,6 @@ void	redraw_image(t_vars *vars)
 
 int	quit(t_vars *vars)
 {
-	pthread_mutex_destroy(&vars->checker);
-	pthread_join(vars->id, 0);
 	cleanup(vars);
 	if (vars->rays)
 		free(vars->rays);
