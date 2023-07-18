@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 19:21:01 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/18 01:17:34 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:23:47 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,17 @@ int	mouse_move_hook(int x, int y, t_vars *vars)
 		if (x >= WIN_WIDTH)
 		{
 			mlx_mouse_move(vars->win, 0, WIN_HEIGHT / 2);
+			rotate_player_mouse(RIGHT_ARROW, vars);
 			vars->mouse_pos.x = 0;
 			return (0);
 		}
 		if (x <= 0)
 		{
 			mlx_mouse_move(vars->win, WIN_WIDTH, WIN_HEIGHT / 2);
+			rotate_player_mouse(LEFT_ARROW, vars);
 			vars->mouse_pos.x = WIN_WIDTH;
 			return (0);
 		}
-		set_keys(LEFT_ARROW, &(vars->keys), false);
-		set_keys(RIGHT_ARROW, &(vars->keys), false);
 		if (vars->mouse_pos.x < x)
 			rotate_player_mouse(RIGHT_ARROW, vars);
 		if (vars->mouse_pos.x > x)
