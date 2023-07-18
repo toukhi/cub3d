@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abiru <abiru@student.42abudhabi.ae>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 15:45:33 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/17 20:31:58 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/18 12:52:29 by abiru            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_window(t_vars *vars)
 			&vars->image.bits_per_pixel, &vars->image.line_length,
 			&vars->image.endian);
 	vars->image_map.img = mlx_new_image(vars->mlx, MAP_WIDTH, MAP_HEIGHT);
-	vars->image_map.addr = mlx_get_data_addr(vars->image_map.img, 
+	vars->image_map.addr = mlx_get_data_addr(vars->image_map.img,
 			&vars->image_map.bits_per_pixel, &vars->image_map.line_length,
 			&vars->image_map.endian);
 }
