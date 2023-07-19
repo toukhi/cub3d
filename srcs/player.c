@@ -6,7 +6,7 @@
 /*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:33:51 by yel-touk          #+#    #+#             */
-/*   Updated: 2023/07/18 01:04:08 by youssef          ###   ########.fr       */
+/*   Updated: 2023/07/20 01:44:32 by youssef          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	move_player(t_vars *vars)
 		move_speed = WALK_SPEED;
 	if (vars->keys.w)
 		move_forward(vars, move_speed);
-	else if (vars->keys.a)
+	if (vars->keys.a)
 		move_left(vars, move_speed);
-	else if (vars->keys.s)
+	if (vars->keys.s)
 		move_backward(vars, move_speed);
-	else if (vars->keys.d)
+	if (vars->keys.d)
 		move_right(vars, move_speed);
 }
 
